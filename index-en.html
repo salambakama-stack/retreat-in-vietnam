@@ -243,6 +243,9 @@
   .stay-fit h4{margin:0 0 .45rem;font-size:.92rem}
   .stay-fit ul{margin:0;padding-left:1.1rem}
   .stay-fit li{font-size:.9rem;line-height:1.75}
+  .stay-features{display:flex;flex-wrap:wrap;gap:.55rem}
+  .stay-feature{display:inline-flex;align-items:center;gap:.35rem;background:rgba(124,139,111,.12);border:1px solid var(--color-border);border-radius:999px;padding:.36rem .75rem;font-size:.86rem;font-weight:700;color:var(--color-text)}
+  .stay-feature i{color:var(--color-secondary);font-size:16px}
   .stay-options{display:grid;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border)}
   .stay-option{display:grid;grid-template-columns:minmax(0,1fr) minmax(160px,max-content);gap:1rem;align-items:center;padding:.9rem 0;border-bottom:1px solid var(--color-border)}
   .stay-option:last-child{border-bottom:0}
@@ -252,6 +255,15 @@
   .stay-option>div:last-child{text-align:right}
   .stay-option>div:last-child strong{color:var(--color-cta);font-family:var(--font-headline);font-size:1.22rem;font-weight:900;white-space:nowrap}
   .stay-footnote{margin:-.35rem 0 0;color:var(--color-secondary);font-size:.86rem;line-height:1.75}
+  .stay-plan{display:grid;gap:.8rem;border-top:1px solid var(--color-border);border-bottom:1px solid var(--color-border);padding:1rem 0}
+  .stay-plan-main{background:rgba(255,255,255,.66);border:1px solid var(--color-border);border-radius:10px;padding:1rem 1.1rem}
+  .stay-plan-kicker{margin:0 0 .25rem;color:var(--color-secondary);font-size:.82rem;font-weight:900}
+  .stay-plan-title{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.75rem}
+  .stay-plan-title strong{font-size:1.05rem}
+  .stay-plan-price{color:var(--color-cta);font-family:var(--font-headline);font-size:1.42rem;font-weight:900;white-space:nowrap}
+  .stay-plan-sub{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:.75rem;color:var(--color-secondary);font-size:.88rem;font-weight:700;padding:.35rem .1rem 0}
+  .stay-plan-sub strong{color:var(--color-text);font-size:.92rem}
+  .stay-plan-sub span:last-child{font-family:var(--font-headline);font-weight:900}
   .agency-note{margin-top:1.5rem;padding:1.35rem 1.5rem;background:rgba(255,255,255,.7);border-left:4px solid var(--color-secondary);border-radius:0 12px 12px 0}
   .agency-note h3{margin:0 0 .45rem;font-size:1rem!important}
   .agency-note p{max-width:820px;color:var(--color-secondary);font-size:.92rem;line-height:1.8}
@@ -590,12 +602,13 @@
             <p>Located in the main building, Garden Rooms offer a quiet and comfortable space for seven days of practice and rest.</p>
           </div>
           <div class="stay-fit">
-            <h4>Suitable for</h4>
-            <ul>
-              <li>Participants who want convenient access and simple movement</li>
-              <li>Those who want comfort with a lighter budget</li>
-              <li>Solo participants or two companions traveling together</li>
-            </ul>
+            <h4>Room Features</h4>
+            <div class="stay-features">
+              <span class="stay-feature"><i class="ti ti-building"></i>Main building</span>
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>25-35 sqm</span>
+              <span class="stay-feature"><i class="ti ti-users"></i>Single or twin stay</span>
+              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
+            </div>
           </div>
           <div class="stay-options" aria-label="Garden Rooms fees">
             <div class="stay-option"><div><strong>Garden Twin Room</strong><span>2 guests · 2 single beds</span></div><div><strong>NT$32,800</strong><span>per person</span></div></div>
@@ -619,18 +632,22 @@
             <p>This 110 sqm two-bedroom bungalow includes two bedrooms and a separate living room, suitable for three to four companions booking the whole bungalow together.</p>
           </div>
           <div class="stay-fit">
-            <h4>Suitable for</h4>
-            <ul>
-              <li>Three to four friends traveling together</li>
-              <li>Small groups who want a whole bungalow and shared living room</li>
-              <li>Participants who want shared rest and conversation space outside practice</li>
-            </ul>
+            <h4>Room Features</h4>
+            <div class="stay-features">
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>110 sqm</span>
+              <span class="stay-feature"><i class="ti ti-bed"></i>Two bedrooms</span>
+              <span class="stay-feature"><i class="ti ti-armchair"></i>Separate living room</span>
+              <span class="stay-feature"><i class="ti ti-users-group"></i>Three to four guests</span>
+              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
+            </div>
           </div>
-          <div class="stay-options" aria-label="Garden Bungalow fees">
-            <div class="stay-option"><div><strong>Three guests</strong><span>Whole bungalow booking</span></div><div><strong>NT$122,400/bungalow</strong><span>NT$40,800/person</span></div></div>
-            <div class="stay-option"><div><strong>Four guests</strong><span>Whole bungalow booking</span></div><div><strong>NT$139,200/bungalow</strong><span>NT$34,800/person</span></div></div>
+          <div class="stay-plan" aria-label="Garden Bungalow fees">
+            <div class="stay-plan-main">
+              <p class="stay-plan-kicker">Recommended</p>
+              <div class="stay-plan-title"><strong>Four friends sharing</strong><span class="stay-plan-price">NT$34,800/person</span></div>
+            </div>
+            <div class="stay-plan-sub"><strong>Also available for three guests</strong><span>NT$40,800/person</span></div>
           </div>
-          <p class="stay-footnote">Three to four companions may reserve the entire bungalow and split the fee among themselves.</p>
           <a class="room-select" href="https://forms.gle/FNfs21r1J3yZo3ye7" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Ask About Garden Bungalow</a>
         </div>
       </article>
@@ -648,12 +665,14 @@
             <p>This 70 sqm standalone bungalow offers a more independent space for participants who want privacy and a quieter rest rhythm.</p>
           </div>
           <div class="stay-fit">
-            <h4>Suitable for</h4>
-            <ul>
-              <li>Participants who want a quieter and more independent space</li>
-              <li>Two companions sharing a standalone bungalow</li>
-              <li>Solo participants who want a complete private rest space</li>
-            </ul>
+            <h4>Room Features</h4>
+            <div class="stay-features">
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>70 sqm</span>
+              <span class="stay-feature"><i class="ti ti-home"></i>Standalone stay</span>
+              <span class="stay-feature"><i class="ti ti-leaf"></i>Quiet private space</span>
+              <span class="stay-feature"><i class="ti ti-users"></i>One or two guests</span>
+              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
+            </div>
           </div>
           <div class="stay-options" aria-label="Private Bungalow fees">
             <div class="stay-option"><div><strong>Two guests</strong><span>2 guests · 70 sqm bungalow</span></div><div><strong>NT$44,800</strong><span>per person</span></div></div>
