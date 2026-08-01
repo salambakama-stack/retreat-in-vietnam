@@ -88,10 +88,10 @@
   .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;padding:1.5rem;box-shadow:0 2px 10px rgba(58,54,46,.05);transition:box-shadow var(--transition),transform var(--transition)}
   .card:hover{box-shadow:0 10px 24px rgba(58,54,46,.1);transform:translateY(-2px)}
 
-  #hero{padding-top:3.75rem}
+  #hero{padding-top:0}
   #hero .container-tight{max-width:var(--w-media)}
-  .hero-kicker{color:var(--color-text);font-family:var(--font-headline);font-size:1.35rem;font-weight:700;margin:1rem 0 0;max-width:680px;line-height:1.6}
-  .hero-subtitle{color:var(--color-secondary);font-size:1.04rem;margin:1rem 0 0;max-width:700px;line-height:1.85}
+  .hero-kicker{color:var(--color-card);font-family:var(--font-headline);font-size:1.35rem;font-weight:700;margin:1rem 0 0;max-width:680px;line-height:1.6}
+  .hero-subtitle{color:rgba(255,255,255,.86);font-size:1.04rem;margin:1rem 0 0;max-width:700px;line-height:1.85}
   .quick-info{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:flex-start;margin:1.45rem 0 1.55rem}
   .quick-info span{display:flex;align-items:center;gap:.45rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:.48rem 1rem;font-size:.88rem}
 
@@ -115,6 +115,11 @@
   .faq-item summary::after{content:"+";font-size:1.4rem;color:var(--color-secondary);transition:transform var(--transition)}
   .faq-item[open] summary::after{transform:rotate(45deg)}
   .faq-item p{padding-top:.6rem;opacity:.85}
+  .faq-group{background:rgba(255,255,255,.72);border:1px solid var(--color-border);border-radius:10px;margin-bottom:.85rem;padding:0 1.15rem}
+  .faq-group>summary{cursor:pointer;font-weight:900;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0}
+  .faq-group>summary::after{content:"+";font-size:1.45rem;color:var(--color-secondary);transition:transform var(--transition)}
+  .faq-group[open]>summary::after{transform:rotate(45deg)}
+  .faq-group .faq-item:last-child{border-bottom:0}
 
   .takeaway-list,.speaker-list{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.65rem}
   .takeaway-list li,.speaker-list li{display:flex;gap:.65rem;align-items:flex-start;background:rgba(255,255,255,.62);border:1px solid var(--color-border);border-radius:10px;padding:.7rem .85rem}
@@ -156,16 +161,21 @@
     .speaker-photo{justify-self:start}
   }
 
-  .hero-photo{width:calc(100% - 3rem);max-width:var(--w-media);margin:2rem auto 0;border-radius:16px;overflow:hidden;box-shadow:0 12px 32px rgba(58,54,46,.14)}
-  .hero-photo img{width:100%;height:auto;display:block}
+  .hero-photo{position:relative;width:100%;max-width:none;margin:0 0 2rem;overflow:hidden;box-shadow:0 12px 32px rgba(58,54,46,.14)}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,18,14,.18),rgba(20,18,14,.54))}
+  .hero-photo img{width:100%;height:clamp(430px,62vh,680px);object-fit:cover;display:block}
+  .hero-overlay{position:absolute;left:50%;bottom:clamp(2rem,7vw,5rem);z-index:1;width:min(var(--w-media),calc(100% - 3rem));transform:translateX(-50%)}
+  .hero-overlay h1{color:#fff!important;text-shadow:0 3px 18px rgba(20,18,14,.38)}
   .hero-actions{margin-top:1.35rem}
   @media(min-width:768px){
     #hero{padding-bottom:3.5rem}
     #about{padding-top:3.5rem}
   }
   @media(max-width:767px){
-    #hero{padding-top:2.5rem!important}
-    .hero-photo{width:100%;border-radius:0;margin-top:1.5rem;box-shadow:none}
+    #hero{padding-top:0!important}
+    .hero-photo{width:100%;border-radius:0;margin:0 0 1.5rem;box-shadow:none}
+    .hero-photo img{height:78vh;min-height:520px}
+    .hero-overlay{bottom:2rem;width:calc(100% - 2rem)}
     .hero-kicker{font-size:1.18rem}
     .hero-subtitle{font-size:.98rem}
     .hero-actions{padding:0 1.5rem}
@@ -190,7 +200,9 @@
   .about-timeline .day-line:last-child{margin-bottom:0}
   .about-timeline .day-line p{line-height:1.7}
   .day-photo{border-radius:0 12px 0 0;overflow:hidden;margin:-1.25rem -1.5rem 1rem;}
-  .day-photo img{width:100%;height:180px;object-fit:cover;display:block}
+  .day-photo .gallery-main{border-radius:0;aspect-ratio:auto}
+  .day-photo .gallery-main-picture{height:auto}
+  .day-photo .gallery-main-img{width:100%;height:auto;object-fit:contain;display:block;background:rgba(255,255,255,.62)}
   .day-photo-full{background:rgba(255,255,255,.62)}
   .day-photo-full img{height:auto;max-height:520px;object-fit:contain;background:rgba(255,255,255,.62)}
   @media(max-width:767px){.day-photo-full img{max-height:430px}}
@@ -230,12 +242,37 @@
   .room-amenities i{font-size:16px;color:var(--color-secondary)}
   .stay-grid{display:grid;gap:1.35rem;margin-top:1.5rem}
   .stay-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(58,54,46,.06)}
-  .stay-gallery{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr);grid-template-rows:repeat(2,minmax(150px,1fr));gap:.5rem;padding:.5rem;background:rgba(255,255,255,.72)}
-  .stay-gallery--two{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:1fr}
-  .stay-gallery img{width:100%;height:100%;min-height:160px;object-fit:cover;border-radius:8px;display:block;background:rgba(124,139,111,.12)}
-  .stay-gallery img:first-child{grid-row:1/3;min-height:360px}
-  .stay-gallery--two img:first-child{grid-row:auto;min-height:280px}
-  .stay-gallery--two img{min-height:280px}
+  .media-gallery{position:relative;background:rgba(255,255,255,.72)}
+  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12)}
+  .gallery-main-picture{display:block;height:100%}
+  .gallery-main-img{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery-control{position:absolute;top:50%;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;border:0;border-radius:999px;background:rgba(255,255,255,.82);color:var(--color-text);cursor:pointer;transform:translateY(-50%);box-shadow:0 3px 12px rgba(58,54,46,.16)}
+  .gallery-control:hover{opacity:.9}
+  .gallery-prev{left:.7rem}
+  .gallery-next{right:.7rem}
+  .gallery-count{position:absolute;right:.75rem;bottom:.75rem;z-index:2;border-radius:999px;background:rgba(58,54,46,.72);color:#fff;padding:.2rem .55rem;font-size:.76rem;font-weight:700}
+  .gallery-thumbs{display:flex;gap:.45rem;margin-top:.55rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .gallery-thumb{flex:0 0 76px;height:96px;display:flex;align-items:center;justify-content:center;border:2px solid transparent;border-radius:8px;padding:0;background:rgba(255,255,255,.62);cursor:pointer}
+  .gallery-thumb[aria-current="true"]{border-color:var(--color-secondary)}
+  .gallery-thumb img{width:100%;height:100%;object-fit:contain;border-radius:6px;display:block}
+  .stay-gallery{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:.55rem;padding:.5rem;background:rgba(255,255,255,.72)}
+  .stay-gallery .gallery-main{aspect-ratio:1.42}
+  .stay-gallery .gallery-control{display:none}
+  .stay-gallery .gallery-main-picture{height:100%}
+  .stay-gallery .gallery-main-img{width:100%;height:100%;min-height:0;object-fit:contain}
+  .stay-gallery .gallery-main,
+  .stay-gallery .gallery-thumb{cursor:zoom-in}
+  .stay-gallery .gallery-thumbs{display:grid;grid-template-rows:repeat(2,minmax(0,1fr));gap:.55rem;height:100%;margin-top:0;overflow:visible}
+  .stay-gallery .gallery-thumb{width:100%;height:auto;min-height:0}
+  .stay-gallery .gallery-thumb img{object-fit:contain;background:rgba(255,255,255,.62)}
+  .stay-gallery .gallery-thumb[aria-current="true"]{display:none}
+  .stay-gallery .gallery-count{display:none}
+  .image-lightbox[hidden]{display:none}
+  .image-lightbox{position:fixed;inset:0;z-index:80;display:grid;place-items:center;padding:clamp(1rem,3vw,2.5rem)}
+  .image-lightbox__backdrop{position:absolute;inset:0;background:rgba(34,31,27,.78)}
+  .image-lightbox__content{position:relative;z-index:1;max-width:min(1120px,92vw);max-height:88vh}
+  .image-lightbox__content img{display:block;max-width:100%;max-height:88vh;border-radius:10px;background:rgba(255,255,255,.9);box-shadow:0 18px 42px rgba(34,31,27,.28)}
+  .image-lightbox__close{position:absolute;top:-.85rem;right:-.85rem;z-index:2;width:2.4rem;height:2.4rem;border:0;border-radius:999px;background:#fff;color:var(--color-text);font-size:1.35rem;line-height:1;cursor:pointer;box-shadow:0 6px 18px rgba(34,31,27,.22)}
   .stay-body{display:grid;align-content:start;gap:1.25rem;padding:clamp(1.35rem,3vw,2.2rem)}
   .stay-kicker{margin:0;color:var(--color-secondary);font-size:.78rem;font-weight:700;letter-spacing:.05em}
   .stay-heading h3{margin:.25rem 0 .7rem;font-size:clamp(1.35rem,2.6vw,2rem)!important}
@@ -254,6 +291,10 @@
   .stay-option>div:first-child span,.stay-option>div:nth-child(2) span{margin-top:.25rem;color:var(--color-secondary);font-size:.82rem;font-weight:700}
   .stay-option>div:nth-child(2){text-align:right}
   .stay-option>div:nth-child(2) strong{color:var(--color-cta);font-family:var(--font-headline);font-size:1.22rem;font-weight:900;white-space:nowrap}
+  .stay-option--gift{grid-template-columns:minmax(0,1fr) minmax(210px,260px) max-content}
+  .early-gift{margin-top:.55rem;padding:.55rem .7rem;border:1px solid var(--color-border);border-radius:8px;background:rgba(124,139,111,.1);text-align:left}
+  .early-gift strong{color:var(--color-text)!important;font-family:var(--font-body)!important;font-size:.82rem!important;font-weight:900;white-space:normal!important}
+  .early-gift span{font-size:.8rem!important;line-height:1.55}
   .stay-option .room-select,.stay-plan .room-select{margin:0;white-space:nowrap}
   .stay-plan-main .room-select{margin-top:.85rem}
   .stay-footnote{margin:-.35rem 0 0;color:var(--color-secondary);font-size:.86rem;line-height:1.75}
@@ -270,8 +311,9 @@
   .agency-note h3{margin:0 0 .45rem;font-size:1rem!important}
   .agency-note p{max-width:820px;color:var(--color-secondary);font-size:.92rem;line-height:1.8}
   @media(max-width:860px){
-    .stay-gallery{display:flex;overflow-x:auto;gap:.5rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .stay-gallery img,.stay-gallery img:first-child,.stay-gallery--two img,.stay-gallery--two img:first-child{flex:0 0 84%;width:84%;height:auto;min-height:0;aspect-ratio:4/3;scroll-snap-align:start}
+    .stay-gallery{display:block;overflow:visible}
+    .stay-gallery .gallery-main-img{min-height:0}
+    .gallery-thumbs{display:none}
     .stay-option{grid-template-columns:1fr;gap:.5rem}
     .stay-option>div:nth-child(2){text-align:left}
     .stay-option>div:nth-child(2) strong{white-space:normal}
@@ -289,15 +331,16 @@
     .day-card:has(.day-photo){
       display:grid;
       grid-template-columns:minmax(280px,340px) 1fr;
+      grid-template-rows:auto auto auto;
       column-gap:2.25rem;
-      align-items:stretch;
+      align-items:start;
     }
     .day-card:has(.day-photo) .day-photo{
       grid-column:1;grid-row:1/4;
-      margin:0;border-radius:12px;align-self:stretch;
+      margin:0;border-radius:12px;align-self:start;
     }
-    .day-card:has(.day-photo) .day-photo:not(.day-photo-full) img{
-      height:100%;min-height:250px;
+    .day-card:has(.day-photo) .day-photo:not(.day-photo-full) .gallery-main-img{
+      height:auto;min-height:0;
     }
     .day-card:has(.day-photo) .day-tag{grid-column:2;grid-row:1}
     .day-card:has(.day-photo) h3{grid-column:2;grid-row:2}
@@ -346,13 +389,13 @@
 <a id="top"></a>
 
 <section id="hero">
-  <div class="container-tight">
-    <h1>Seven-Day Awakening Retreat in Vietnam</h1>
-    <p class="hero-kicker">Set aside seven days to practice fully.</p>
-    <p class="hero-subtitle">Morning practice, afternoon rest, and evening Satsang.<br>Over seven days, let bodily experience and inner understanding slowly come together.</p>
-  </div>
   <div class="hero-photo">
     <img src="images/hero-forest-walk.jpg" alt="Participants walking along a forest path at Alba Wellness Valley">
+    <div class="hero-overlay">
+      <h1>Seven-Day Awakening Retreat in Vietnam</h1>
+      <p class="hero-kicker">Set aside seven days to practice fully.</p>
+      <p class="hero-subtitle">Morning practice, afternoon rest, and evening Satsang.<br>Over seven days, let bodily experience and inner understanding slowly come together.</p>
+    </div>
   </div>
   <div class="container-tight hero-actions">
     <div class="quick-info">
@@ -426,7 +469,16 @@
     <h2>Itinerary</h2>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day1-dinner.jpg" alt="Wooden dome dining space at Alba Restaurant before the welcome dinner"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 1 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day1-01-900.webp 900w, images/gallery/day1-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day1-01-900.webp" alt="Wooden dome dining space at Alba Restaurant before the welcome dinner" width="1400" height="934" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 1 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day1-01-900.webp","srcset":"images/gallery/day1-01-900.webp 900w, images/gallery/day1-01-1400.webp 1400w","thumb":"images/gallery/day1-01-320.webp","alt":"Wooden dome dining space at Alba Restaurant before the welcome dinner","width":"1400","height":"934"},{"src":"images/gallery/day1-02-900.webp","srcset":"images/gallery/day1-02-900.webp 900w, images/gallery/day1-02-1400.webp 1400w","thumb":"images/gallery/day1-02-320.webp","alt":"Participants settling into the practice room at the start of the retreat","width":"1400","height":"788"}]</script>
+      </div>
       <span class="day-tag">DAY 1 · 12/18</span>
       <h3>Arrival and Settling In</h3>
       <div class="day-timeline">
@@ -437,7 +489,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day2-practice-class.jpg" alt="Participants practicing asana in class with Nandaji"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 2 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day2-01-900.webp 900w, images/gallery/day2-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day2-01-900.webp" alt="Participants practicing asana in class with Nandaji" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 2 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day2-01-900.webp","srcset":"images/gallery/day2-01-900.webp 900w, images/gallery/day2-01-1400.webp 1400w","thumb":"images/gallery/day2-01-320.webp","alt":"Participants practicing asana in class with Nandaji","width":"1400","height":"1050"},{"src":"images/gallery/day2-02-900.webp","srcset":"images/gallery/day2-02-900.webp 900w, images/gallery/day2-02-1400.webp 1400w","thumb":"images/gallery/day2-02-320.webp","alt":"Participants practicing asana during class","width":"1400","height":"1051"}]</script>
+      </div>
       <span class="day-tag">DAY 2 · 12/19</span>
       <h3>Nature and Restoration</h3>
       <div class="day-timeline">
@@ -449,7 +510,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day3-hue.jpg" alt="Hue Imperial City with a ceremonial procession"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 3 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day3-01-900.webp 900w, images/gallery/day3-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day3-01-900.webp" alt="Hue Imperial City with a ceremonial procession" width="1400" height="796" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 3 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day3-01-900.webp","srcset":"images/gallery/day3-01-900.webp 900w, images/gallery/day3-01-1400.webp 1400w","thumb":"images/gallery/day3-01-320.webp","alt":"Hue Imperial City with a ceremonial procession","width":"1400","height":"796"},{"src":"images/gallery/day3-02.webp","srcset":"images/gallery/day3-02.webp 765w","thumb":"images/gallery/day3-02.webp","alt":"Thien Mu Pagoda and Phuoc Duyen Tower in Hue","width":"765","height":"1020"},{"src":"images/gallery/day3-03.avif","srcset":"images/gallery/day3-03.avif 1820w","thumb":"images/gallery/day3-03.avif","alt":"Hue Imperial City architecture and gate","width":"1820","height":"1300"}]</script>
+      </div>
       <span class="day-tag">DAY 3 · 12/20</span>
       <h3>Culture and Nature</h3>
       <div class="day-timeline">
@@ -461,7 +531,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day4-outdoor-practice.jpg" alt="Participants practicing outdoors on the lawn and among trees at Alba Wellness Valley"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 4 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day4-01-900.webp 900w, images/gallery/day4-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day4-01-900.webp" alt="Participants practicing outdoors on the lawn and among trees at Alba Wellness Valley" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 1</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 4 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day4-01-900.webp","srcset":"images/gallery/day4-01-900.webp 900w, images/gallery/day4-01-1400.webp 1400w","thumb":"images/gallery/day4-01-320.webp","alt":"Participants practicing outdoors on the lawn and among trees at Alba Wellness Valley","width":"1400","height":"1050"},{"src":"images/gallery/day4-02-900.webp","srcset":"images/gallery/day4-02-900.webp 900w, images/gallery/day4-02-1400.webp 1400w","thumb":"images/gallery/day4-02-320.webp","alt":"Nandaji adjusting a participant's asana details in class","width":"1400","height":"1050"}]</script>
+      </div>
       <span class="day-tag">DAY 4 · 12/21</span>
       <h3>Quietude</h3>
       <div class="day-timeline">
@@ -473,7 +552,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo day-photo-full"><img src="images/day5-teacher-demo.jpg" alt="Nandaji demonstrating asana details in class while students observe"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 5 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day5-01-900.webp 900w, images/gallery/day5-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day5-01-900.webp" alt="Nandaji demonstrating support and observation in asana" width="1400" height="1867" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 3</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 5 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day5-01-900.webp","srcset":"images/gallery/day5-01-900.webp 900w, images/gallery/day5-01-1400.webp 1400w","thumb":"images/gallery/day5-01-320.webp","alt":"Nandaji demonstrating support and observation in asana","width":"1400","height":"1867"},{"src":"images/gallery/day5-02-900.webp","srcset":"images/gallery/day5-02-900.webp 900w, images/gallery/day5-02-1400.webp 1400w","thumb":"images/gallery/day5-02-320.webp","alt":"Observing foot and standing alignment in class","width":"1400","height":"1867"},{"src":"images/gallery/day5-03-900.webp","srcset":"images/gallery/day5-03-900.webp 900w, images/gallery/day5-03-1400.webp 1400w","thumb":"images/gallery/day5-03-320.webp","alt":"Nandaji adjusting a participant's asana in class","width":"1400","height":"1867"}]</script>
+      </div>
       <span class="day-tag">DAY 5 · 12/22</span>
       <h3>Deepening Practice</h3>
       <div class="day-timeline">
@@ -485,7 +573,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day6-satsang.jpg" alt="Participants seated with Nandaji under evening lights for Satsang"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 6 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day6-01-900.webp 900w, images/gallery/day6-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day6-01-900.webp" alt="Participants seated in the practice room, integrating the practice experience" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 3</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 6 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day6-01-900.webp","srcset":"images/gallery/day6-01-900.webp 900w, images/gallery/day6-01-1400.webp 1400w","thumb":"images/gallery/day6-01-320.webp","alt":"Participants seated in the practice room, integrating the practice experience","width":"1400","height":"1050"},{"src":"images/gallery/day6-02-900.webp","srcset":"images/gallery/day6-02-900.webp 900w, images/gallery/day6-02-1400.webp 1400w","thumb":"images/gallery/day6-02-320.webp","alt":"Nandaji adjusting a participant's asana in class","width":"1400","height":"1867"},{"src":"images/gallery/day6-03-900.webp","srcset":"images/gallery/day6-03-900.webp 900w, images/gallery/day6-03-1400.webp 1400w","thumb":"images/gallery/day6-03-320.webp","alt":"Participants practicing in class as Nandaji guides nearby","width":"1400","height":"934"}]</script>
+      </div>
       <span class="day-tag">DAY 6 · 12/23</span>
       <h3>Integration and Reflection</h3>
       <div class="day-timeline">
@@ -497,7 +594,16 @@
     </div>
 
     <div class="day-card">
-      <div class="day-photo"><img src="images/day7-group-photo.jpg" alt="Group photo with Nandaji outdoors at Alba Wellness Valley"></div>
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 7 photos">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day7-01-900.webp 900w, images/gallery/day7-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day7-01-900.webp" alt="Group photo with Nandaji outdoors at Alba Wellness Valley" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 1</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="Choose DAY 7 photo"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day7-01-900.webp","srcset":"images/gallery/day7-01-900.webp 900w, images/gallery/day7-01-1400.webp 1400w","thumb":"images/gallery/day7-01-320.webp","alt":"Group photo with Nandaji outdoors at Alba Wellness Valley","width":"1400","height":"1050"}]</script>
+      </div>
       <span class="day-tag">DAY 7 · 12/24</span>
       <h3>Quiet Departure</h3>
       <div class="day-timeline">
@@ -587,16 +693,21 @@
     <p style="opacity:.8;margin-bottom:1.5rem;max-width:var(--w-read)">Choose the accommodation style that fits your stay, then review the fee. All fees are listed in New Taiwan Dollars. The main retreat is 7 days and 6 nights, excluding international airfare.</p>
 
     <div class="fee-summary">
-      <p><strong>Included:</strong> 6 nights accommodation, brunch, dinner, classes guided by Nandaji, group airport transfers, cultural tour in Hue, one 50-minute massage, and hot spring access during the stay.</p>
+      <p><strong>Included:</strong> 6 nights accommodation, brunch, dinner, classes guided by Nandaji, group airport transfers, cultural tour in Hue, one 50-minute Spa treatment, and hot spring access during the stay.</p>
       <p><strong>Not included:</strong> International airfare, private transfers, Hoi An extension, travel insurance, visa fees, optional activities, and personal expenses.</p>
     </div>
 
     <div class="stay-grid">
       <article class="stay-card">
-        <div class="stay-gallery" aria-label="Garden Rooms photos">
-          <img src="images/room-1-twin35.webp" alt="Garden twin room">
-          <img src="images/room-garden-deluxe-official.jpg" alt="Garden single room 25 sqm">
-          <img src="images/room-garden-premium-official.jpg" alt="Garden view single room 35 sqm">
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Rooms photos">
+          <div class="gallery-main">
+            <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-01-900.webp" alt="Garden Room interior" width="1400" height="993" loading="lazy" decoding="async"></picture>
+            <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+            <div class="gallery-count" aria-live="polite">1 / 3</div>
+          </div>
+          <div class="gallery-thumbs" aria-label="Choose Garden Rooms photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-01-900.webp","srcset":"images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w","thumb":"images/gallery/room-garden-01-320.webp","alt":"Garden Room interior","width":"1400","height":"993"},{"src":"images/gallery/room-garden-02-900.webp","srcset":"images/gallery/room-garden-02-900.webp 900w, images/gallery/room-garden-02-1400.webp 1400w","thumb":"images/gallery/room-garden-02-320.webp","alt":"Garden Room window and bed area","width":"1400","height":"934"},{"src":"images/gallery/room-garden-03-900.webp","srcset":"images/gallery/room-garden-03-900.webp 900w, images/gallery/room-garden-03-1400.webp 1400w","thumb":"images/gallery/room-garden-03-320.webp","alt":"Garden Room details","width":"1400","height":"936"}]</script>
         </div>
         <div class="stay-body">
           <div class="stay-heading">
@@ -610,22 +721,26 @@
               <span class="stay-feature"><i class="ti ti-building"></i>Main building</span>
               <span class="stay-feature"><i class="ti ti-ruler-2"></i>25-35 sqm</span>
               <span class="stay-feature"><i class="ti ti-users"></i>Single or twin stay</span>
-              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
             </div>
           </div>
           <div class="stay-options" aria-label="Garden Rooms fees">
-            <div class="stay-option"><div><strong>Garden Twin Room</strong><span>2 guests · 2 single beds</span></div><div><strong>NT$32,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E9%9B%99%E5%BA%8A%E6%88%BF%2035%E3%8E%A1%20%2F%20Twin%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
-            <div class="stay-option"><div><strong>Garden Single Room</strong><span>1 guest · 25 sqm</span></div><div><strong>NT$39,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%96%AE%E4%BA%BA%E6%88%BF%2025%E3%8E%A1%20%2F%20Single%20Room%2025%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
-            <div class="stay-option"><div><strong>Garden View Single Room</strong><span>1 guest · 35 sqm</span></div><div><strong>NT$42,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%96%AE%E4%BA%BA%E6%88%BF%2035%E3%8E%A1%20%2F%20Single%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
+            <div class="stay-option"><div><strong>Garden Twin Room</strong><span>2 guests · 2 single beds</span></div><div><strong>NT$32,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E9%9B%99%E5%BA%8A%E5%AE%A2%E6%88%BF%20%2F%20Garden%20Twin%20Room" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+            <div class="stay-option"><div><strong>Garden Single Room</strong><span>1 guest · 25 sqm</span></div><div><strong>NT$39,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E5%96%AE%E4%BA%BA%E5%AE%A2%E6%88%BF%2025%E3%8E%A1%20%2F%20Garden%20Single%20Room%2025%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+            <div class="stay-option"><div><strong>Garden View Single Room</strong><span>1 guest · 35 sqm</span></div><div><strong>NT$42,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E6%99%AF%E8%A7%80%E5%96%AE%E4%BA%BA%E6%88%BF%2035%E3%8E%A1%20%2F%20Garden%20View%20Single%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
           </div>
         </div>
       </article>
 
       <article class="stay-card">
-        <div class="stay-gallery" aria-label="Garden Bungalow photos">
-          <img src="images/room-2-villa110-4p.jpg" alt="Garden bungalow bedroom">
-          <img src="images/room-bungalow110-official-1.jpg" alt="Garden bungalow interior">
-          <img src="images/room-bungalow110-official-2.jpg" alt="Garden bungalow living room and details">
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Bungalow photos">
+          <div class="gallery-main">
+            <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-bungalow-01-900.webp" alt="Garden Bungalow bedroom" width="1400" height="934" loading="lazy" decoding="async"></picture>
+            <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+            <div class="gallery-count" aria-live="polite">1 / 3</div>
+          </div>
+          <div class="gallery-thumbs" aria-label="Choose Garden Bungalow photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-bungalow-01-900.webp","srcset":"images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-01-320.webp","alt":"Garden Bungalow bedroom","width":"1400","height":"934"},{"src":"images/gallery/room-garden-bungalow-02-900.webp","srcset":"images/gallery/room-garden-bungalow-02-900.webp 900w, images/gallery/room-garden-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-02-320.webp","alt":"Garden Bungalow living area","width":"1400","height":"935"},{"src":"images/gallery/room-garden-bungalow-03-900.webp","srcset":"images/gallery/room-garden-bungalow-03-900.webp 900w, images/gallery/room-garden-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-03-320.webp","alt":"Garden Bungalow details","width":"1400","height":"935"}]</script>
         </div>
         <div class="stay-body">
           <div class="stay-heading">
@@ -640,25 +755,29 @@
               <span class="stay-feature"><i class="ti ti-bed"></i>Two bedrooms</span>
               <span class="stay-feature"><i class="ti ti-armchair"></i>Separate living room</span>
               <span class="stay-feature"><i class="ti ti-users-group"></i>Three to four guests</span>
-              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
             </div>
           </div>
           <div class="stay-plan" aria-label="Garden Bungalow fees">
             <div class="stay-plan-main">
-              <p class="stay-plan-kicker">Recommended</p>
-              <div class="stay-plan-title"><strong>Four friends sharing</strong><span class="stay-plan-price">NT$34,800/person</span></div>
-              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E6%9C%A8%E5%B1%8B%E5%88%A5%E5%A2%85%E5%9B%9B%E4%BA%BA%E6%88%BF%20110%E3%8E%A1%20%2F%20Wooden%20Villa%20for%20Four%20110%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a>
+              <p class="stay-plan-kicker">Recommended | four guests</p>
+              <div class="stay-plan-title"><strong>Full bungalow booking</strong><span class="stay-plan-price">NT$34,800/person</span></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%EF%BD%9C%E5%9B%9B%E4%BD%8D%E5%90%8C%E8%A1%8C%20%2F%20Garden%20Bungalow%20for%20Four" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
             </div>
-            <div class="stay-plan-sub"><strong>Also available for three guests</strong><span>NT$40,800/person</span><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E6%9C%A8%E5%B1%8B%E5%88%A5%E5%A2%85%E4%B8%89%E4%BA%BA%E6%88%BF%20110%E3%8E%A1%20%2F%20Wooden%20Villa%20for%20Three%20110%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
+            <div class="stay-plan-sub"><strong>Also available for three guests</strong><span>NT$40,800/person</span><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%EF%BD%9C%E4%B8%89%E4%BD%8D%E5%90%8C%E8%A1%8C%20%2F%20Garden%20Bungalow%20for%20Three" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
           </div>
         </div>
       </article>
 
       <article class="stay-card">
-        <div class="stay-gallery" aria-label="Private Bungalow photos">
-          <img src="images/room-bungalow70-official-1.jpg" alt="Private bungalow exterior">
-          <img src="images/room-bungalow70-official-2.jpg" alt="Private bungalow interior">
-          <img src="images/room-bungalow70-official-3.jpg" alt="Private bungalow bedroom details">
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Private Bungalow photos">
+          <div class="gallery-main">
+            <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-private-bungalow-01-900.webp" alt="Private Bungalow exterior" width="1400" height="936" loading="lazy" decoding="async"></picture>
+            <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+            <div class="gallery-count" aria-live="polite">1 / 3</div>
+          </div>
+          <div class="gallery-thumbs" aria-label="Choose Private Bungalow photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-private-bungalow-01-900.webp","srcset":"images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-01-320.webp","alt":"Private Bungalow exterior","width":"1400","height":"936"},{"src":"images/gallery/room-private-bungalow-02-900.webp","srcset":"images/gallery/room-private-bungalow-02-900.webp 900w, images/gallery/room-private-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-02-320.webp","alt":"Private Bungalow interior","width":"1400","height":"934"},{"src":"images/gallery/room-private-bungalow-03-900.webp","srcset":"images/gallery/room-private-bungalow-03-900.webp 900w, images/gallery/room-private-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-03-320.webp","alt":"Private Bungalow bedroom details","width":"1400","height":"935"}]</script>
         </div>
         <div class="stay-body">
           <div class="stay-heading">
@@ -673,12 +792,11 @@
               <span class="stay-feature"><i class="ti ti-home"></i>Standalone stay</span>
               <span class="stay-feature"><i class="ti ti-leaf"></i>Quiet private space</span>
               <span class="stay-feature"><i class="ti ti-users"></i>One or two guests</span>
-              <span class="stay-feature"><i class="ti ti-spa"></i>Full-body massage</span>
             </div>
           </div>
           <div class="stay-options" aria-label="Private Bungalow fees">
-            <div class="stay-option"><div><strong>Two guests</strong><span>2 guests · 70 sqm bungalow</span></div><div><strong>NT$44,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E6%9C%A8%E5%B1%8B%E5%88%A5%E5%A2%85%E9%9B%99%E4%BA%BA%E6%88%BF%2070%E3%8E%A1%20%2F%20Twin%20Wooden%20Villa%2070%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
-            <div class="stay-option"><div><strong>Private single stay</strong><span>1 guest · 70 sqm bungalow</span></div><div><strong>NT$53,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%96%AE%E4%BA%BA%E6%9C%A8%E5%B1%8B%E5%88%A5%E5%A2%85%2070%E3%8E%A1%20%2F%20Single%20Wooden%20Villa%2070%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Select</a></div>
+            <div class="stay-option"><div><strong>Two guests</strong><span>2 guests · 70 sqm bungalow</span></div><div><strong>NT$44,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E7%8D%A8%E6%A3%9F%E5%BA%AD%E5%9C%92%E6%9C%A8%E5%B1%8B%EF%BD%9C%E5%85%A9%E4%BA%BA%E5%85%A5%E4%BD%8F%20%2F%20Private%20Bungalow%20for%20Two" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+            <div class="stay-option"><div><strong>Private single stay</strong><span>1 guest · 70 sqm bungalow</span></div><div><strong>NT$53,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E7%8D%A8%E6%A3%9F%E5%BA%AD%E5%9C%92%E6%9C%A8%E5%B1%8B%EF%BD%9C%E4%B8%80%E4%BA%BA%E7%8D%A8%E4%BA%AB%20%2F%20Private%20Bungalow%20Single%20Stay" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
           </div>
         </div>
       </article>
@@ -707,9 +825,9 @@
     <h3>Cancellation Policy</h3>
     <ul class="policy-list">
       <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span><span class="text-highlight">The deposit is non-refundable.</span> It may be transferred to another person with prior notice to the organizer.</span></li>
-      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel before Oct 1, 2026: all paid fees except the deposit will be <span class="text-highlight">fully refunded</span>.</span></li>
-      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel between Oct 1 and Dec 9, 2026: <span class="text-highlight">80%</span> of paid fees except the deposit will be refunded.</span></li>
-      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel on or after Dec 10, 2026: <span class="text-highlight">no refund will be issued</span>.</span></li>
+      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel before Sep 30, 2026: all paid fees except the deposit will be <span class="text-highlight">fully refunded</span>.</span></li>
+      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel between Oct 1 and Nov 17, 2026: <span class="text-highlight">80%</span> of paid fees except the deposit will be refunded.</span></li>
+      <li><i class="ti ti-point-filled" style="color:var(--color-secondary);font-size:.6rem;margin-top:.5rem"></i><span>Cancel on or after Nov 18, 2026: <span class="text-highlight">no refund will be issued</span>.</span></li>
     </ul>
     <p style="font-size:.88rem;opacity:.75;margin-top:.75rem">We recommend purchasing travel insurance that includes trip cancellation coverage for illness, flight changes, or other unexpected situations.</p>
   </div>
@@ -718,18 +836,32 @@
 <section id="faq" style="background:rgba(124,139,111,.14)">
   <div class="container-tight">
     <h2>FAQ</h2>
-    <div>
-      <details class="faq-item"><summary>How much yoga experience is needed?</summary><p>At least three months of regular yoga practice is recommended.</p></details>
-      <details class="faq-item"><summary>What will we study each day?</summary><p>Morning classes include asana, pranayama, and meditation. Some evenings include Satsang, where Nandaji connects yoga texts, the day’s class, and participants’ questions for further discussion.</p></details>
-      <details class="faq-item"><summary>What is Satsang?</summary><p>Satsang is an evening time for shared study and dialogue. Nandaji draws from the Yoga Sutras and the day’s practice, shares yogic perspectives, and responds to questions about asana, pranayama, and daily practice. No prior background in yoga philosophy is required.</p></details>
-      <details class="faq-item"><summary>Will there be sightseeing?</summary><p>The main retreat centers on yoga practice, Satsang, and rest. It includes a cultural tour in Hue, nature walks, and outdoor activities. There are no shopping stops and no packed sightseeing schedule.</p></details>
-      <details class="faq-item"><summary>What is special about the accommodation?</summary><p>Alba Wellness Valley is set in a natural environment. During the stay, participants may use the hot springs and will receive one 50-minute massage.</p></details>
-      <details class="faq-item"><summary>Is international airfare included?</summary><p>International airfare is not included. Participants are responsible for booking their own flights to Vietnam and arriving at the designated airport according to the group transfer schedule.</p></details>
-      <details class="faq-item"><summary>Can I join only the seven-day main retreat?</summary><p>Yes. The two-night Hoi An extension is optional. Participants who do not join may go to the airport after check-out on Dec 24 or arrange their own onward travel.</p></details>
-      <details class="faq-item"><summary>Can I register alone?</summary><p>Yes. Room options include a 25 sqm single room, 35 sqm single room, and 70 sqm single wooden villa. You may also choose a twin room and ask the organizer to help arrange a roommate.</p></details>
-      <details class="faq-item"><summary>Can I choose my room type?</summary><p>Yes. You may choose a room type according to your needs. Availability is limited and rooms are reserved in the order deposits are completed.</p></details>
-      <details class="faq-item"><summary>Are meals vegetarian?</summary><p>The main retreat includes daily vegetarian brunch. Group dinners are mainly vegetarian. If you have allergies or special dietary needs, please note them when registering. Final arrangements depend on the hotel’s availability.</p></details>
-      <details class="faq-item"><summary>Can I join if I have an old injury or special condition?</summary><p>Please describe your current physical condition, old injuries, surgery history, or medical restrictions when registering. The organizer will help assess suitability based on the course format. If you have acute pain, recent surgery, or a major medical condition, please obtain medical clearance first.</p></details>
+    <div class="faq-list">
+      <details class="faq-group">
+        <summary>Course and Practice</summary>
+        <details class="faq-item"><summary>How much yoga experience is needed?</summary><p>At least three months of regular yoga practice is recommended. If you are not sure whether this retreat is suitable, please contact the organizer first.</p></details>
+        <details class="faq-item"><summary>What will we study each day?</summary><p>Each day includes asana, pranayama, meditation, and evening Satsang. Please refer to the itinerary section for the detailed schedule.</p></details>
+        <details class="faq-item"><summary>What is Satsang?</summary><p>Satsang is an evening time for shared study and dialogue. Nandaji connects yoga texts, the day’s classes, and participants’ questions to share observations from practice and daily life. No prior background in yoga philosophy is required.</p></details>
+        <details class="faq-item"><summary>Will there be sightseeing?</summary><p>The main retreat centers on yoga practice, rest, and Satsang. It includes a cultural tour in Hue and nature experiences, but it is not a packed sightseeing itinerary.</p></details>
+        <details class="faq-item"><summary>Can I join if I have an old injury or special condition?</summary><p>Please describe your physical condition, old injuries, or special needs when registering. If you have had recent surgery, acute pain, or a major medical condition, please obtain medical clearance first and then discuss suitability with the organizer.</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>Accommodation</summary>
+        <details class="faq-item"><summary>What is special about the accommodation?</summary><p>Alba Wellness Valley is set among mountain forest and hot spring surroundings. During the stay, participants may use the resort facilities and receive one Spa treatment.</p></details>
+        <details class="faq-item"><summary>Can I register alone?</summary><p>Yes. You may choose a single room, or choose a twin room and ask the organizer to help arrange a roommate. Actual arrangements depend on registration status.</p></details>
+        <details class="faq-item"><summary>Can I choose my room type?</summary><p>Yes. Room types are reserved in the order deposits are completed. If a room type is full, the organizer will help arrange another available option.</p></details>
+        <details class="faq-item"><summary>Do all accommodation plans include a Spa treatment?</summary><p>Yes. All accommodation plans include one Spa treatment. The treatment content differs by accommodation plan and will be arranged by Alba Wellness Valley during the stay.</p></details>
+        <details class="faq-item"><summary>Can I choose my Spa treatment?</summary><p>Yes. After check-in, Alba Wellness Valley will provide the available treatment options for that stay, and you may choose from the on-site list.</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>Fees and Registration</summary>
+        <details class="faq-item"><summary>Is international airfare included?</summary><p>No. International airfare is not included in the main retreat fee. Participants are responsible for arranging their own flights and arriving at the designated airport according to the group transfer time.</p></details>
+        <details class="faq-item"><summary>Can I join only the seven-day main retreat?</summary><p>Yes. The two-night Hoi An extension is optional and may be joined according to your personal needs.</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>Meals and Daily Life</summary>
+        <details class="faq-item"><summary>Are meals vegetarian?</summary><p>The main retreat provides vegetarian meals. If you have allergies or special dietary needs, please tell us when registering so we can confirm with the hotel.</p></details>
+      </details>
     </div>
   </div>
 </section>
@@ -759,6 +891,7 @@
   </div>
 </section>
 
+<script type="module" src="scripts/payment-config.mjs"></script>
 <script>
   const nav = document.getElementById('siteNav');
   const menuToggle = document.querySelector('.mobile-menu-toggle');
@@ -778,6 +911,112 @@
       mobileMenu.classList.remove('open');
       menuToggle?.setAttribute('aria-expanded', 'false');
     });
+  });
+
+  document.querySelectorAll('#faq .faq-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('#faq .faq-item[open]').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'image-lightbox';
+  lightbox.hidden = true;
+  lightbox.innerHTML = `
+    <div class="image-lightbox__backdrop" data-lightbox-close></div>
+    <div class="image-lightbox__content" role="dialog" aria-modal="true" aria-label="Image preview">
+      <button class="image-lightbox__close" type="button" aria-label="Close image preview">×</button>
+      <picture><source class="image-lightbox__source" type="image/webp"><img class="image-lightbox__img" alt=""></picture>
+    </div>
+  `;
+  document.body.appendChild(lightbox);
+  const lightboxSource = lightbox.querySelector('.image-lightbox__source');
+  const lightboxImg = lightbox.querySelector('.image-lightbox__img');
+  const lightboxClose = lightbox.querySelector('.image-lightbox__close');
+  const closeLightbox = () => { lightbox.hidden = true; };
+  const openLightbox = (item) => {
+    lightboxImg.src = item.src;
+    lightboxImg.alt = item.alt;
+    lightboxSource.srcset = item.srcset;
+    lightboxSource.type = item.src.endsWith('.avif') ? 'image/avif' : 'image/webp';
+    lightbox.hidden = false;
+    lightboxClose.focus();
+  };
+  lightbox.addEventListener('click', (event) => {
+    if (event.target.closest('[data-lightbox-close], .image-lightbox__close')) closeLightbox();
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !lightbox.hidden) closeLightbox();
+  });
+
+  document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+    const dataEl = gallery.querySelector('.gallery-data');
+    const img = gallery.querySelector('.gallery-main-img');
+    const source = gallery.querySelector('.gallery-source');
+    const count = gallery.querySelector('.gallery-count');
+    const thumbs = gallery.querySelector('.gallery-thumbs');
+    const main = gallery.querySelector('.gallery-main');
+    const isStayGallery = gallery.classList.contains('stay-gallery');
+    let items = [];
+    let index = 0;
+    let touchStartX = 0;
+
+    try {
+      items = JSON.parse(dataEl?.textContent || '[]');
+    } catch {
+      items = [];
+    }
+
+    if (!items.length || !img || !source || !count) return;
+
+    const render = (nextIndex) => {
+      index = (nextIndex + items.length) % items.length;
+      const item = items[index];
+      img.src = item.src;
+      img.alt = item.alt;
+      img.width = item.width;
+      img.height = item.height;
+      source.srcset = item.srcset;
+      source.type = item.src.endsWith('.avif') ? 'image/avif' : 'image/webp';
+      main?.setAttribute('data-orientation', Number(item.height) > Number(item.width) ? 'portrait' : 'landscape');
+      count.textContent = `${index + 1} / ${items.length}`;
+      thumbs?.querySelectorAll('.gallery-thumb').forEach((button, i) => {
+        button.setAttribute('aria-current', String(i === index));
+      });
+    };
+
+    if (items.length <= 1) {
+      gallery.querySelectorAll('.gallery-control').forEach((button) => button.hidden = true);
+    }
+
+    items.forEach((item, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'gallery-thumb';
+      button.setAttribute('aria-label', `View photo ${i + 1}`);
+      button.setAttribute('aria-current', String(i === 0));
+      button.innerHTML = `<img src="${item.thumb}" alt="" width="320" height="240" loading="lazy" decoding="async">`;
+      button.addEventListener('click', () => isStayGallery ? openLightbox(item) : render(i));
+      thumbs?.appendChild(button);
+    });
+
+    render(0);
+    if (isStayGallery) {
+      main?.addEventListener('click', () => openLightbox(items[0]));
+      return;
+    }
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => render(index - 1));
+    gallery.querySelector('.gallery-next')?.addEventListener('click', () => render(index + 1));
+    gallery.querySelector('.gallery-main')?.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0]?.clientX || 0;
+    }, { passive: true });
+    gallery.querySelector('.gallery-main')?.addEventListener('touchend', (event) => {
+      const deltaX = (event.changedTouches[0]?.clientX || 0) - touchStartX;
+      if (Math.abs(deltaX) > 45 && items.length > 1) render(index + (deltaX < 0 ? 1 : -1));
+    }, { passive: true });
   });
 </script>
 
