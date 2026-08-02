@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>越南七日覺醒僻靜營｜與 Nandaji 共度七天練習與學習</title>
+<meta name="description" content="七天六夜，在越南順化，跟著 Nandaji 練習體位法、調息法、冥想與 Satsang。">
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
+
+<style>
+  *,*::before,*::after{box-sizing:border-box}
+  body{margin:0}
+  :root{
+    --color-bg:#F5F1E8;
+    --color-text:#3A362E;
+    --color-secondary:#7C8B6F;
+    --color-cta:#D9A441;
+    --color-on-cta:#3A2E0A;
+    --color-border:#D9D2C0;
+    --color-card:#FFFFFF;
+    --font-headline:'Noto Sans TC',sans-serif;
+    --font-body:'Noto Sans TC',sans-serif;
+    --transition:250ms cubic-bezier(0.4,0,0.2,1);
+    --w-read:780px;
+    --w-content:920px;
+    --w-wide:1120px;
+    --w-media:1040px;
+    --space-section:clamp(3.5rem,7vw,6rem);
+  }
+  html{scroll-behavior:smooth}
+  section{scroll-margin-top:78px}
+  body{font-family:var(--font-body);font-weight:400;color:var(--color-text);background:var(--color-bg);line-height:2}
+  h1,h2,h3{font-family:var(--font-headline)!important;line-height:1.35!important;letter-spacing:.01em;color:var(--color-text)}
+  h1{font-size:clamp(2.15rem,5vw,3.25rem)!important;font-weight:900!important}
+  h2{font-size:clamp(1.55rem,3.2vw,2.1rem)!important;font-weight:700!important;margin:0 0 1.35rem}
+  h3{font-size:1.1rem!important;font-weight:700!important;margin:1.7rem 0 .8rem}
+  .container-tight>*:first-child,.container-wide>*:first-child{margin-top:0}
+  p{font-weight:400;margin:0 0 1rem}
+  li{font-weight:400;line-height:1.9}
+  .container-tight{max-width:var(--w-content);margin:0 auto;padding:0 1.5rem}
+  .container-wide{max-width:var(--w-wide);margin:0 auto;padding:0 1.5rem}
+  section{padding:3.25rem 0}
+  @media(min-width:768px){
+    section{padding:var(--space-section) 0}
+    p{margin-bottom:1.25rem}
+    .day-timeline{gap:1rem}
+    .faq-item{padding:1.15rem 0}
+    .info-item{padding:.85rem 0}
+    .day-card{padding:2rem;margin-bottom:2rem}
+    .takeaway-list,.speaker-list{gap:.85rem}
+  }
+
+  .site-nav{position:sticky;top:0;z-index:50;background:rgba(245,241,232,.92);backdrop-filter:blur(6px);border-bottom:1px solid var(--color-border);transition:box-shadow var(--transition)}
+  .site-nav.scrolled{box-shadow:0 2px 12px rgba(58,54,46,.08)}
+  .nav-inner{max-width:1100px;margin:0 auto;padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+  .nav-brand{font-family:var(--font-headline);font-weight:700;font-size:1.05rem;color:var(--color-text);text-decoration:none;white-space:nowrap}
+  .nav-left{display:flex;align-items:center;gap:2.25rem}
+  .nav-links{display:flex;gap:1.5rem;list-style:none;margin:0;padding:0}
+  .nav-links a{color:var(--color-text);text-decoration:none;font-size:.92rem;opacity:.85}
+  .nav-links a:hover{opacity:1}
+  .mobile-menu-toggle{display:none;align-items:center;gap:.35rem;border:1px solid var(--color-border);background:var(--color-card);color:var(--color-text);border-radius:8px;padding:.48rem .75rem;font-size:.88rem;font-weight:700;cursor:pointer}
+  .mobile-menu{display:none;border-top:1px solid var(--color-border);background:rgba(245,241,232,.98)}
+  .mobile-menu.open{display:block}
+  .mobile-menu-inner{max-width:1100px;margin:0 auto;padding:.75rem 1.5rem 1rem;display:grid;gap:.45rem}
+  .mobile-menu a{display:flex;align-items:center;justify-content:space-between;color:var(--color-text);text-decoration:none;background:var(--color-card);border:1px solid var(--color-border);border-radius:8px;padding:.72rem .85rem;font-size:.95rem;font-weight:700}
+  .mobile-menu a:last-child{background:var(--color-cta);color:var(--color-on-cta);border-color:transparent}
+  @media(max-width:860px){.nav-links{display:none}.mobile-menu-toggle{display:inline-flex}.nav-cta{display:none}.nav-inner{padding:.75rem 1rem}}
+  .nav-cta{background:var(--color-cta);color:var(--color-on-cta);padding:.5rem 1.1rem;border-radius:8px;font-weight:700;font-size:.9rem;text-decoration:none;white-space:nowrap;cursor:pointer;transition:opacity var(--transition)}
+  .nav-cta:hover{opacity:.88}
+  .lang-switch{display:flex;align-items:center;border:1.5px solid var(--color-text);border-radius:999px;overflow:hidden;font-weight:700;font-size:.85rem}
+  .lang-switch span,.lang-switch a{padding:.35rem .8rem;text-decoration:none;line-height:1}
+  .lang-switch span{background:var(--color-text);color:var(--color-bg)}
+  .lang-switch a{color:var(--color-text);transition:background var(--transition)}
+  .lang-switch a:hover{background:rgba(58,54,46,.1)}
+
+  .cta-primary{display:inline-block;background:var(--color-cta);color:var(--color-on-cta);padding:.95rem 2rem;border-radius:8px;font-weight:700;text-decoration:none;cursor:pointer;transition:transform var(--transition),box-shadow var(--transition);box-shadow:0 4px 12px rgba(58,54,46,.08)}
+  .cta-primary:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(58,54,46,.14)}
+  .cta-primary:focus-visible{outline:3px solid var(--color-secondary);outline-offset:3px}
+  .cta-note{font-size:.85rem;opacity:.7;margin:.75rem 0 0}
+
+  .card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;padding:1.5rem;box-shadow:0 2px 10px rgba(58,54,46,.05);transition:box-shadow var(--transition),transform var(--transition)}
+  .card:hover{box-shadow:0 10px 24px rgba(58,54,46,.1);transform:translateY(-2px)}
+
+  #hero{padding-top:0}
+  #hero .container-tight{max-width:var(--w-media)}
+  .hero-kicker{color:var(--color-card);font-family:var(--font-headline);font-size:1.35rem;font-weight:700;margin:1rem 0 0;max-width:680px;line-height:1.6}
+  .hero-subtitle{color:rgba(255,255,255,.86);font-size:1.04rem;margin:1rem 0 0;max-width:700px;line-height:1.85}
+  .quick-info{display:flex;flex-wrap:wrap;gap:.7rem;justify-content:flex-start;margin:1.45rem 0 1.55rem}
+  .quick-info span{display:flex;align-items:center;gap:.45rem;background:var(--color-card);border:1px solid var(--color-border);border-radius:999px;padding:.48rem 1rem;font-size:.88rem}
+
+  .day-card{border-left:3px solid var(--color-secondary);padding:1.35rem 1.5rem;margin-bottom:1.35rem;background:var(--color-card);border-radius:0 12px 12px 0;box-shadow:0 3px 14px rgba(58,54,46,.06)}
+  .day-card .day-tag{font-family:var(--font-headline);font-weight:700;color:var(--color-secondary);font-size:.85rem;letter-spacing:.05em}
+  .day-card h3{margin-top:.25rem}
+  .day-timeline{margin-top:.9rem;display:flex;flex-direction:column;gap:.62rem}
+  .day-line{display:flex;gap:.65rem;align-items:baseline}
+  .day-line p{margin:0;font-size:.95rem}
+  .time-tag{flex-shrink:0;font-family:var(--font-headline);font-size:.7rem;font-weight:700;padding:.2rem .6rem;border-radius:999px;white-space:nowrap}
+  .time-tag--am{background:rgba(124,139,111,.18);color:#3F4A38}
+  .time-tag--pm{background:rgba(217,210,192,.55);color:var(--color-text)}
+  .time-tag--eve{background:rgba(217,164,65,.22);color:#6B4E19}
+
+  .info-item{display:flex;gap:.75rem;padding:.65rem 0;border-bottom:1px solid var(--color-border)}
+  .info-item:last-child{border-bottom:none}
+  .info-label{font-weight:700;min-width:120px}
+
+  .faq-item{border-bottom:1px solid var(--color-border);padding:.9rem 0}
+  .faq-item summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem}
+  .faq-item summary::after{content:"+";font-size:1.4rem;color:var(--color-secondary);transition:transform var(--transition)}
+  .faq-item[open] summary::after{transform:rotate(45deg)}
+  .faq-item p{padding-top:.6rem;opacity:.85}
+  .faq-group{background:rgba(255,255,255,.72);border:1px solid var(--color-border);border-radius:10px;margin-bottom:.85rem;padding:0 1.15rem}
+  .faq-group>summary{cursor:pointer;font-weight:900;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1rem 0}
+  .faq-group>summary::after{content:"+";font-size:1.45rem;color:var(--color-secondary);transition:transform var(--transition)}
+  .faq-group[open]>summary::after{transform:rotate(45deg)}
+  .faq-group .faq-item:last-child{border-bottom:0}
+
+  .takeaway-list,.speaker-list{list-style:none;margin:1rem 0 0;padding:0;display:flex;flex-direction:column;gap:.65rem}
+  .takeaway-list li,.speaker-list li{display:flex;gap:.65rem;align-items:flex-start;background:rgba(255,255,255,.62);border:1px solid var(--color-border);border-radius:10px;padding:.7rem .85rem}
+  .takeaway-list i,.speaker-list i{color:var(--color-secondary);font-size:18px;line-height:1.7;flex-shrink:0}
+  .takeaway-list strong{color:var(--color-secondary)}
+  #about .takeaway-list{max-width:var(--w-content)}
+  .section-eyebrow{color:var(--color-secondary);font-weight:700;font-size:.85rem;letter-spacing:.05em;margin:0 0 .5rem}
+  .organizer-grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
+  @media(min-width:900px){
+    .organizer-grid{grid-template-columns:1fr 1fr;align-items:center;gap:3rem}
+  }
+  .organizer-heading{color:#fff!important;font-size:clamp(1.75rem,3.5vw,2.5rem)!important;font-weight:900!important;margin:0!important;line-height:1.2!important}
+  .organizer-copy p{color:rgba(255,255,255,.85);margin-bottom:.75rem;font-size:.95rem}
+  .organizer-copy p:last-child{margin-bottom:0}
+  .facility-gallery{display:grid;grid-template-columns:1fr;gap:1.5rem;margin-top:3rem}
+  @media(min-width:768px){
+    .facility-gallery{grid-template-columns:repeat(6,1fr);gap:1.75rem}
+    .facility-large{grid-column:span 3}
+    .facility-item:not(.facility-large){grid-column:span 2}
+  }
+  #venue .container-wide{max-width:var(--w-wide)}
+  .facility-item{position:relative;border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(58,54,46,.08)}
+  .facility-item img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:4/3}
+  .facility-large img{aspect-ratio:16/9}
+  .facility-caption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(to top,rgba(20,18,14,.62),transparent 70%);color:#fff;font-family:var(--font-headline);font-weight:700;font-size:.95rem;padding:1.5rem 1rem .8rem}
+  .speaker-list{margin-bottom:1.25rem}
+  .speaker-title{margin-bottom:2rem}
+  .speaker-grid{display:grid;grid-template-columns:1fr;gap:2rem}
+  @media(min-width:900px){
+    .speaker-grid{grid-template-columns:minmax(280px,420px) minmax(0,1fr);gap:3.5rem;align-items:start}
+  }
+  .speaker-heading{margin:0 0 1.5rem!important;font-size:clamp(2rem,5vw,3rem)!important}
+  .speaker-copy p{margin-bottom:1rem}
+  .text-lead{color:var(--color-secondary)}
+
+  #speaker h2{margin-bottom:1.65rem}
+  .speaker-photo{width:100%;max-width:380px;height:auto;display:block;border-radius:16px;box-shadow:0 8px 24px rgba(58,54,46,.12)}
+  @media(min-width:900px){
+    .speaker-photo{justify-self:start}
+  }
+
+  .hero-photo{position:relative;width:100%;max-width:none;margin:0 0 2rem;overflow:hidden;box-shadow:0 12px 32px rgba(58,54,46,.14)}
+  .hero-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(to bottom,rgba(20,18,14,.18),rgba(20,18,14,.54))}
+  .hero-photo img{width:100%;height:clamp(430px,62vh,680px);object-fit:cover;display:block}
+  .hero-overlay{position:absolute;left:50%;bottom:clamp(2rem,7vw,5rem);z-index:1;width:min(var(--w-media),calc(100% - 3rem));transform:translateX(-50%)}
+  .hero-overlay h1{color:#fff!important;text-shadow:0 3px 18px rgba(20,18,14,.38)}
+  .hero-actions{margin-top:1.35rem}
+  @media(min-width:768px){
+    #hero{padding-bottom:3.5rem}
+    #about{padding-top:3.5rem}
+  }
+  @media(max-width:767px){
+    #hero{padding-top:0!important}
+    .hero-photo{width:100%;border-radius:0;margin:0 0 1.5rem;box-shadow:none}
+    .hero-photo img{height:78vh;min-height:520px}
+    .hero-overlay{bottom:2rem;width:calc(100% - 2rem)}
+    .hero-kicker{font-size:1.18rem}
+    .hero-subtitle{font-size:.98rem}
+    .hero-actions{padding:0 1.5rem}
+    .hero-actions .cta-primary{width:100%;text-align:center}
+  }
+  .about-intro{max-width:var(--w-content);font-size:1.15rem;font-family:var(--font-headline);color:var(--color-text);margin-bottom:2rem}
+  .about-row{display:grid;gap:1.5rem;margin:2rem 0;align-items:center}
+  .about-row-text{max-width:var(--w-read)}
+  .about-row-text p:last-child{margin-bottom:0}
+  .about-photo{border-radius:12px;overflow:hidden;margin:0;box-shadow:0 8px 24px rgba(58,54,46,.1)}
+  .about-photo img{width:100%;aspect-ratio:3/2;height:auto;object-fit:cover;display:block}
+  @media(min-width:768px){
+    .about-row{grid-template-columns:minmax(0,1fr) minmax(360px,1.1fr);gap:3rem;margin:3rem 0}
+    .about-row-reverse{grid-template-columns:minmax(360px,1.1fr) minmax(0,1fr)}
+    .about-row-reverse .about-row-text{grid-column:2}
+    .about-row-reverse .about-photo{grid-column:1;grid-row:1}
+    .about-photo img{aspect-ratio:3/2}
+  }
+  .text-highlight{background:rgba(217,164,65,.28);padding:.05em .35em;border-radius:4px;font-weight:700}
+  .about-timeline{margin:1.75rem 0 1.85rem}
+  .about-timeline .day-line{margin-bottom:.85rem}
+  .about-timeline .day-line:last-child{margin-bottom:0}
+  .about-timeline .day-line p{line-height:1.7}
+  .day-photo{border-radius:0 12px 0 0;overflow:hidden;margin:-1.25rem -1.5rem 1rem;}
+  .day-photo .gallery-main{border-radius:0;aspect-ratio:auto}
+  .day-photo .gallery-main-picture{height:auto}
+  .day-photo .gallery-main-img{width:100%;height:auto;object-fit:contain;display:block;background:rgba(255,255,255,.62)}
+
+  .media-gallery{position:relative;background:rgba(255,255,255,.72)}
+  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12)}
+  .gallery-main-picture{display:block;height:100%}
+  .gallery-main-img{width:100%;height:100%;object-fit:cover;display:block}
+  .gallery-control{position:absolute;top:50%;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;border:0;border-radius:999px;background:rgba(255,255,255,.82);color:var(--color-text);cursor:pointer;transform:translateY(-50%);box-shadow:0 3px 12px rgba(58,54,46,.16)}
+  .gallery-control:hover{opacity:.9}
+  .gallery-prev{left:.7rem}
+  .gallery-next{right:.7rem}
+  .gallery-count{position:absolute;right:.75rem;bottom:.75rem;z-index:2;border-radius:999px;background:rgba(58,54,46,.72);color:#fff;padding:.2rem .55rem;font-size:.76rem;font-weight:700}
+  .gallery-thumbs{display:flex;gap:.45rem;margin-top:.55rem;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .gallery-thumb{flex:0 0 76px;height:96px;display:flex;align-items:center;justify-content:center;border:2px solid transparent;border-radius:8px;padding:0;background:rgba(255,255,255,.62);cursor:pointer}
+  .gallery-thumb[aria-current="true"]{border-color:var(--color-secondary)}
+  .gallery-thumb img{width:100%;height:100%;object-fit:contain;border-radius:6px;display:block}
+  @media(max-width:767px){
+    .gallery-control{display:none}
+    .gallery-count{display:none}
+  }
+
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+
+  /* 逐日行程：桌機版改成「圖片在左、內容在右」的並排層次，取代整欄直疊 */
+  @media(min-width:900px){
+    #itinerary>.container-tight{max-width:var(--w-media)}
+    .day-card:has(.day-photo){
+      display:grid;
+      grid-template-columns:minmax(280px,340px) 1fr;
+      grid-template-rows:auto auto auto;
+      column-gap:2.25rem;
+      align-items:start;
+    }
+    .day-card:has(.day-photo) .day-photo{
+      grid-column:1;grid-row:1/4;
+      margin:0;border-radius:12px;align-self:start;
+    }
+    .day-card:has(.day-photo) .day-photo .gallery-main-img{
+      height:auto;min-height:0;
+    }
+    .day-card:has(.day-photo) .day-tag{grid-column:2;grid-row:1}
+    .day-card:has(.day-photo) h3{grid-column:2;grid-row:2}
+    .day-card:has(.day-photo) .day-timeline{grid-column:2;grid-row:3;margin-top:.6rem}
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
+      <i class="ti ti-menu-2"></i><span>選單</span>
+    </button>
+    <div class="nav-left">
+      <a class="nav-brand" href="#top">覺醒僻靜營</a>
+      <ul class="nav-links">
+        <li><a href="#about">關於這趟課程</a></li>
+        <li><a href="#itinerary">每日安排</a></li>
+        <li><a href="#speaker">帶領老師</a></li>
+        <li><a href="#venue">關於場地</a></li>
+        <li><a href="#faq">常見問題</a></li>
+      </ul>
+    </div>
+    <div class="lang-switch">
+      <span>中</span>
+      <a href="interest-en.html">EN</a>
+    </div>
+    <a class="nav-cta" href="https://forms.gle/w1c8KShUrov7sEbW7" target="_blank" rel="noopener">加入通知名單</a>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-menu-inner">
+      <a href="#about">關於這趟課程 <i class="ti ti-chevron-right"></i></a>
+      <a href="#itinerary">每日安排 <i class="ti ti-chevron-right"></i></a>
+      <a href="#speaker">帶領老師 <i class="ti ti-chevron-right"></i></a>
+      <a href="#venue">關於場地 <i class="ti ti-chevron-right"></i></a>
+      <a href="#faq">常見問題 <i class="ti ti-chevron-right"></i></a>
+      <a href="interest-en.html">English <i class="ti ti-chevron-right"></i></a>
+      <a href="https://forms.gle/w1c8KShUrov7sEbW7" target="_blank" rel="noopener">加入通知名單 <i class="ti ti-external-link"></i></a>
+    </div>
+  </div>
+</nav>
+
+<a id="top"></a>
+
+<section id="hero">
+  <div class="hero-photo">
+    <img src="images/hero-forest-walk.jpg" alt="學員走在 Alba Wellness Valley 的林間步道中">
+    <div class="hero-overlay">
+      <h1>越南七日覺醒僻靜營</h1>
+      <p class="hero-kicker">留七天，完整地練習一次。</p>
+      <p class="hero-subtitle">每天清晨練習，午後休息，晚間 Satsang。<br>讓身體的經驗與心中的理解，一起慢慢累積。</p>
+    </div>
+  </div>
+  <div class="container-tight hero-actions">
+    <div class="quick-info">
+      <span><i class="ti ti-calendar"></i>2026/12/18–24</span>
+      <span><i class="ti ti-map-pin"></i>Alba Wellness Valley, Hue</span>
+      <span><i class="ti ti-yoga"></i>帶領老師：Nandaji</span>
+    </div>
+    <a class="cta-primary" href="https://forms.gle/w1c8KShUrov7sEbW7" target="_blank" rel="noopener">加入通知名單</a>
+    <p class="cta-note">詳細資料索取</p>
+  </div>
+</section>
+
+<section id="about">
+  <div class="container-wide">
+    <p class="about-intro">
+      日常裡，練習常常被切成十分鐘、二十分鐘的片段，夾在通勤、工作和家務之間。這一次，我們把時間整段留給練習，不再切割。
+    </p>
+    <h2>關於這趟課程</h2>
+    <div class="about-row">
+      <div class="about-row-text">
+        <div class="day-timeline about-timeline">
+          <div class="day-line"><span class="time-tag time-tag--am">清晨</span><p>跟著 Nandaji 練習體位法、調息法與冥想</p></div>
+          <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>留給休息、溫泉、自然與安靜獨處</p></div>
+          <div class="day-line"><span class="time-tag time-tag--eve">晚上</span><p>透過 Satsang，一起討論瑜珈經典、白天的練習，以及心中尚未釐清的問題</p></div>
+        </div>
+      </div>
+      <div class="about-photo">
+        <img src="images/about-practice.jpg" alt="學員們在自然採光的練習室裡席地而坐，準備開始晨間練習">
+      </div>
+    </div>
+    <div class="about-row about-row-reverse">
+      <div class="about-row-text">
+        <p>Satsang 是每天晚上的共同學習時間。Nandaji 會從《Yoga Sutras》瑜珈經的觀點出發，結合體位法、調息法與日常生活，引導大家提問與討論。<span class="text-highlight">白天透過身體累積經驗，晚上透過對話整理理解</span>，隔天再帶著新的觀察回到練習。</p>
+        <p>Alba Wellness Valley 的自然環境、溫泉與充足的休息時間，為每天的學習提供安靜而穩定的空間。我們不急著累積學習的腳步，而是讓每一次練習、休息與討論，都有時間慢慢沉澱。</p>
+      </div>
+      <div class="about-photo">
+        <img src="images/about-grounds.jpg" alt="Alba Wellness Valley 園區的池塘、紅橋與茅草屋頂建築">
+      </div>
+    </div>
+    <h3 style="margin-top:1.5rem">七天之後，你會帶走</h3>
+    <ul class="takeaway-list">
+      <li><i class="ti ti-check"></i><span>一段連續而完整的瑜珈練習經驗</span></li>
+      <li><i class="ti ti-check"></i><span>對身體、呼吸與心念更清楚的觀察</span></li>
+      <li><i class="ti ti-check"></i><span>將瑜珈經典與日常練習連結的方法</span></li>
+      <li><i class="ti ti-check"></i><span>一個可以延續回生活中的練習節奏</span></li>
+    </ul>
+  </div>
+</section>
+
+<section id="speaker" style="background:rgba(124,139,111,.14)">
+  <div class="container-wide">
+    <div class="speaker-title">
+      <p class="section-eyebrow">帶領老師</p>
+      <h2 class="speaker-heading">Nandaji</h2>
+    </div>
+    <div class="speaker-grid">
+      <div>
+      <img class="speaker-photo" src="images/speaker-nandaji-2026.jpg" alt="帶領老師 Nandaji">
+      </div>
+      <div class="speaker-copy">
+        <p>Nandaji 長年投入瑜珈修習與教學，課程涵蓋體位法、調息法、冥想與瑜珈哲學，總能將看似深奧的內容，轉化為每位學生都能親身體會的學習。</p>
+        <p><strong class="text-lead">不急著給答案，而是引導提問：</strong>在課堂中，他透過一次次的提問，引導學生從自己的身體、呼吸與練習中找到理解。</p>
+        <p><strong class="text-lead">陪伴式的長期關係：</strong>許多學生跟隨他多年，不只是因為學會更多體位法，而是在一次次的練習中，逐漸建立觀察自己、理解自己的能力。</p>
+        <p><strong class="text-lead">把哲學落實到生活裡：</strong>晚間的 Satsang 是學習的重要部分，Nandaji 結合瑜珈經典、當天練習與現場提問，讓瑜珈不只是課堂內容，而成為能延續到生活中的實踐。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="itinerary">
+  <div class="container-tight">
+    <h2>每日安排</h2>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 1 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day1-01-900.webp 900w, images/gallery/day1-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day1-01-900.webp" alt="Alba 餐廳的木構圓頂用餐空間" width="1400" height="934" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 1 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day1-01-900.webp","srcset":"images/gallery/day1-01-900.webp 900w, images/gallery/day1-01-1400.webp 1400w","thumb":"images/gallery/day1-01-320.webp","alt":"Alba 餐廳的木構圓頂用餐空間","width":"1400","height":"934"},{"src":"images/gallery/day1-02-900.webp","srcset":"images/gallery/day1-02-900.webp 900w, images/gallery/day1-02-1400.webp 1400w","thumb":"images/gallery/day1-02-320.webp","alt":"學員在練習室中安頓，準備開始旅程","width":"1400","height":"788"}]</script>
+      </div>
+      <span class="day-tag">DAY 1 · 12/18</span>
+      <h3>抵達．安頓身心</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--pm">下午</span><p>抵達順化，安頓休息</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">傍晚</span><p>溫泉浸泡・輕柔冥想，緩解旅途疲勞</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>相見歡</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 2 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day2-01-900.webp 900w, images/gallery/day2-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day2-01-900.webp" alt="學員在教室中跟隨 Nandaji 進行體位法練習" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 2 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day2-01-900.webp","srcset":"images/gallery/day2-01-900.webp 900w, images/gallery/day2-01-1400.webp 1400w","thumb":"images/gallery/day2-01-320.webp","alt":"學員在教室中跟隨 Nandaji 進行體位法練習","width":"1400","height":"1050"},{"src":"images/gallery/day2-02-900.webp","srcset":"images/gallery/day2-02-900.webp 900w, images/gallery/day2-02-1400.webp 1400w","thumb":"images/gallery/day2-02-320.webp","alt":"學員在課堂中進行體位法練習","width":"1400","height":"1051"}]</script>
+      </div>
+      <span class="day-tag">DAY 2 · 12/19</span>
+      <h3>自然與身心療癒</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–10:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐</span><p>10:30</p></div>
+        <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>溫泉浸泡・安靜獨處</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>晚餐・Satsang</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 3 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/practice-04-900.webp 900w, images/gallery/practice-04-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/practice-04-900.webp" alt="Nandaji 在課堂中調整學員的體位細節" width="1400" height="1051" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 3 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/practice-04-900.webp","srcset":"images/gallery/practice-04-900.webp 900w, images/gallery/practice-04-1400.webp 1400w","thumb":"images/gallery/practice-04-320.webp","alt":"Nandaji 在課堂中調整學員的體位細節","width":"1400","height":"1051"},{"src":"images/gallery/practice-09-900.webp","srcset":"images/gallery/practice-09-900.webp 900w, images/gallery/practice-09-1400.webp 1400w","thumb":"images/gallery/practice-09-320.webp","alt":"學員與 Nandaji 在戶外木平台上圍坐交流","width":"1400","height":"788"}]</script>
+      </div>
+      <span class="day-tag">DAY 3 · 12/20</span>
+      <h3>文化與自然和諧</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–10:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐</span><p>10:30</p></div>
+        <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>自由時間</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>順化市區自由用餐</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 4 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day4-01-900.webp 900w, images/gallery/day4-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day4-01-900.webp" alt="學員在 Alba Wellness Valley 的草地與樹林間進行戶外練習" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 2</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 4 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day4-01-900.webp","srcset":"images/gallery/day4-01-900.webp 900w, images/gallery/day4-01-1400.webp 1400w","thumb":"images/gallery/day4-01-320.webp","alt":"學員在 Alba Wellness Valley 的草地與樹林間進行戶外練習","width":"1400","height":"1050"},{"src":"images/gallery/day4-02-900.webp","srcset":"images/gallery/day4-02-900.webp 900w, images/gallery/day4-02-1400.webp 1400w","thumb":"images/gallery/day4-02-320.webp","alt":"Nandaji 在課堂中調整學員的體位細節","width":"1400","height":"1050"}]</script>
+      </div>
+      <span class="day-tag">DAY 4 · 12/21</span>
+      <h3>寧靜</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–10:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐</span><p>10:30</p></div>
+        <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>自然散步・個人冥想・森林浴</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>晚餐・Satsang</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 5 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day5-01-900.webp 900w, images/gallery/day5-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day5-01-900.webp" alt="Nandaji 示範體位法中的支撐與觀察" width="1400" height="1867" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 3</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 5 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day5-01-900.webp","srcset":"images/gallery/day5-01-900.webp 900w, images/gallery/day5-01-1400.webp 1400w","thumb":"images/gallery/day5-01-320.webp","alt":"Nandaji 示範體位法中的支撐與觀察","width":"1400","height":"1867"},{"src":"images/gallery/day5-02-900.webp","srcset":"images/gallery/day5-02-900.webp 900w, images/gallery/day5-02-1400.webp 1400w","thumb":"images/gallery/day5-02-320.webp","alt":"課堂中觀察足部與站姿細節","width":"1400","height":"1867"},{"src":"images/gallery/day5-03-900.webp","srcset":"images/gallery/day5-03-900.webp 900w, images/gallery/day5-03-1400.webp 1400w","thumb":"images/gallery/day5-03-320.webp","alt":"Nandaji 在課堂中調整學員體位","width":"1400","height":"1867"}]</script>
+      </div>
+      <span class="day-tag">DAY 5 · 12/22</span>
+      <h3>深度練習</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–10:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐</span><p>10:30</p></div>
+        <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>山林健行（約 2 小時）</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>晚餐・Satsang</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <div class="day-photo media-gallery" data-gallery aria-label="DAY 6 照片">
+        <div class="gallery-main">
+          <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
+          <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/day6-01-900.webp 900w, images/gallery/day6-01-1400.webp 1400w" sizes="(max-width: 899px) 100vw, 340px"><img class="gallery-main-img" src="images/gallery/day6-01-900.webp" alt="學員在教室中靜坐與整理練習經驗" width="1400" height="1050" loading="lazy" decoding="async"></picture>
+          <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
+          <div class="gallery-count" aria-live="polite">1 / 3</div>
+        </div>
+        <div class="gallery-thumbs" aria-label="選擇 DAY 6 照片"></div>
+        <script type="application/json" class="gallery-data">[{"src":"images/gallery/day6-01-900.webp","srcset":"images/gallery/day6-01-900.webp 900w, images/gallery/day6-01-1400.webp 1400w","thumb":"images/gallery/day6-01-320.webp","alt":"學員在教室中靜坐與整理練習經驗","width":"1400","height":"1050"},{"src":"images/gallery/day6-02-900.webp","srcset":"images/gallery/day6-02-900.webp 900w, images/gallery/day6-02-1400.webp 1400w","thumb":"images/gallery/day6-02-320.webp","alt":"Nandaji 在課堂中調整學員體位","width":"1400","height":"1867"},{"src":"images/gallery/day6-03-900.webp","srcset":"images/gallery/day6-03-900.webp 900w, images/gallery/day6-03-1400.webp 1400w","thumb":"images/gallery/day6-03-320.webp","alt":"學員進行課堂練習，Nandaji 在旁引導","width":"1400","height":"934"}]</script>
+      </div>
+      <span class="day-tag">DAY 6 · 12/23</span>
+      <h3>整合與反思</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–10:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐</span><p>10:30</p></div>
+        <div class="day-line"><span class="time-tag time-tag--pm">午後</span><p>瑜珈練習</p></div>
+        <div class="day-line"><span class="time-tag time-tag--eve">晚間</span><p>晚餐・Satsang</p></div>
+      </div>
+    </div>
+
+    <div class="day-card">
+      <span class="day-tag">DAY 7 · 12/24</span>
+      <h3>寧靜啟程</h3>
+      <div class="day-timeline">
+        <div class="day-line"><span class="time-tag time-tag--am">晨間</span><p>06:00–09:00　體位法・呼吸法・冥想</p></div>
+        <div class="day-line"><span class="time-tag time-tag--am">早午餐後</span><p>結束課程</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="venue" style="background:rgba(124,139,111,.14)">
+  <div class="container-wide">
+    <p class="section-eyebrow">關於場地</p>
+    <h2>Alba Wellness Valley 的日常場景</h2>
+    <p style="color:var(--color-secondary);max-width:var(--w-read);margin-bottom:0">課程在越南順化的 Alba Wellness Valley 進行。</p>
+    <p style="max-width:var(--w-read)">練習室、餐廳、溫泉、泳池與住宿都在同一個場域裡，不需要每天移動。清晨走出房間就能到練習室，午後可以直接泡溫泉或在林間散步。</p>
+    <p style="max-width:var(--w-read)">這樣的環境，讓七天的節奏能夠真正安靜下來。</p>
+    <div class="facility-gallery">
+      <div class="facility-item facility-large">
+        <img src="images/facility-pool.jpg" alt="泳池與周圍自然環境">
+        <span class="facility-caption">泳池與自然</span>
+      </div>
+      <div class="facility-item facility-large">
+        <img src="images/facility-restaurant.jpg" alt="Alba 餐廳空間">
+        <span class="facility-caption">餐廳</span>
+      </div>
+      <div class="facility-item">
+        <img src="images/facility-onsen-indoor.jpg" alt="室內溫泉池">
+        <span class="facility-caption">溫泉</span>
+      </div>
+      <div class="facility-item">
+        <img src="images/facility-onsen-outdoor.jpg" alt="戶外溫泉池">
+        <span class="facility-caption">戶外溫泉</span>
+      </div>
+      <div class="facility-item">
+        <img src="images/facility-nature.jpg" alt="自然環境中的紅橋涼亭">
+        <span class="facility-caption">自然環境</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="container-tight">
+    <h2>報名資訊</h2>
+    <div class="card" style="margin-bottom:1.5rem">
+      <p style="margin-bottom:.75rem">2026/12/18–24，為期七天，於越南順化 Alba Wellness Valley。</p>
+      <p style="margin-bottom:.75rem">名額有限。留下資料，我們會盡快提供詳細的費用與報名方式。</p>
+      <p style="margin-bottom:0">如果你有興趣，歡迎先留下 email。開放報名時，我們會第一時間通知你，你會比公開公告早幾天收到。</p>
+    </div>
+    <a class="cta-primary" href="https://forms.gle/w1c8KShUrov7sEbW7" target="_blank" rel="noopener">加入通知名單</a>
+    <p class="cta-note">詳細資料索取</p>
+  </div>
+</section>
+
+<section id="faq" style="background:rgba(124,139,111,.14)">
+  <div class="container-tight">
+    <h2>常見問題</h2>
+    <div class="faq-list">
+      <details class="faq-group">
+        <summary>課程與練習</summary>
+        <details class="faq-item"><summary>需要多少瑜珈經驗？</summary><p>建議具備三個月以上的規律練習經驗。若不確定是否適合，歡迎先與我們聯繫。</p></details>
+        <details class="faq-item"><summary>每天的學習內容有哪些？</summary><p>每天包含體位法、調息法、冥想，以及晚間 Satsang。</p></details>
+        <details class="faq-item"><summary>什麼是 Satsang？</summary><p>Satsang 是晚間的共同學習與對話時間。Nandaji 會結合瑜珈經典、當天課程與現場提問，分享練習與生活中的觀察，不需要具備瑜珈哲學基礎。</p></details>
+        <details class="faq-item"><summary>身體有舊傷或特殊狀況，可以參加嗎？</summary><p>請於報名時說明身體狀況、舊傷或特殊需求。若近期接受手術、急性疼痛或有重大疾病，建議先取得醫師同意，再與我們討論。</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>住宿</summary>
+        <details class="faq-item"><summary>住宿環境有什麼特色？</summary><p>Alba Wellness Valley 位於自然環境中，練習室、餐廳、溫泉、泳池都在同一個園區裡，住宿期間可以自由使用溫泉。</p></details>
+        <details class="faq-item"><summary>可以一個人報名嗎？</summary><p>可以。很多學員都是自己一個人報名，我們也會協助安排相關事宜。</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>費用與報名</summary>
+        <details class="faq-item"><summary>費用大概是多少？</summary><p>費用與報名方式正在確認中。留下資料索取，我們會盡快提供詳細資訊。</p></details>
+      </details>
+      <details class="faq-group">
+        <summary>餐食與生活</summary>
+        <details class="faq-item"><summary>餐食是素食嗎？</summary><p>主行程以蔬食餐點為主。若有特殊飲食需求，可以在正式報名時告訴我們。</p></details>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="organizer" style="background:var(--color-text);padding:2.5rem 0">
+  <div class="container-wide organizer-grid">
+    <div>
+      <p class="section-eyebrow" style="color:rgba(255,255,255,.55)">主辦單位</p>
+      <h2 class="organizer-heading">禪圓瑜珈工作室</h2>
+    </div>
+    <div class="organizer-copy">
+      <p>禪圓瑜珈工作室長期教授艾揚格瑜伽。我們重視的，是在不同的身體條件裡，慢慢找到適合自己的練習方向。</p>
+      <p>這七天，是把平常教室裡重視的練習、觀察與休息，放進一段更完整的時間裡。</p>
+      <p>本課程由禪圓瑜珈工作室規劃與教學，Salamba Taiwan 協助聯繫。</p>
+      <p style="font-size:.9rem;opacity:.7">LINE：https://lin.ee/NJ3dhU3　｜　Email：iyengar.course@gmail.com</p>
+    </div>
+  </div>
+</section>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  const menuToggle = document.querySelector('.mobile-menu-toggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 8);
+  });
+
+  menuToggle?.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuToggle?.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  document.querySelectorAll('#faq .faq-item').forEach((item) => {
+    item.addEventListener('toggle', () => {
+      if (!item.open) return;
+      document.querySelectorAll('#faq .faq-item[open]').forEach((other) => {
+        if (other !== item) other.open = false;
+      });
+    });
+  });
+
+  document.querySelectorAll('[data-gallery]').forEach((gallery) => {
+    const dataEl = gallery.querySelector('.gallery-data');
+    const img = gallery.querySelector('.gallery-main-img');
+    const source = gallery.querySelector('.gallery-source');
+    const count = gallery.querySelector('.gallery-count');
+    const thumbs = gallery.querySelector('.gallery-thumbs');
+    let items = [];
+    let index = 0;
+
+    try {
+      items = JSON.parse(dataEl?.textContent || '[]');
+    } catch {
+      items = [];
+    }
+
+    if (!items.length || !img || !source || !count) return;
+
+    if (items.length <= 1) {
+      gallery.querySelectorAll('.gallery-control').forEach((button) => { button.hidden = true; });
+    }
+
+    const render = (nextIndex) => {
+      index = (nextIndex + items.length) % items.length;
+      const item = items[index];
+      img.src = item.src;
+      img.alt = item.alt;
+      img.width = item.width;
+      img.height = item.height;
+      source.srcset = item.srcset;
+      source.type = item.src.endsWith('.avif') ? 'image/avif' : 'image/webp';
+      count.textContent = `${index + 1} / ${items.length}`;
+      thumbs?.querySelectorAll('.gallery-thumb').forEach((button, i) => {
+        button.setAttribute('aria-current', String(i === index));
+      });
+    };
+
+    items.forEach((item, i) => {
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.className = 'gallery-thumb';
+      button.setAttribute('aria-label', `查看第 ${i + 1} 張照片`);
+      button.setAttribute('aria-current', String(i === 0));
+      button.innerHTML = `<img src="${item.thumb}" alt="" width="320" height="240" loading="lazy" decoding="async">`;
+      button.addEventListener('click', () => render(i));
+      thumbs?.appendChild(button);
+    });
+
+    render(0);
+    gallery.querySelector('.gallery-prev')?.addEventListener('click', () => render(index - 1));
+    gallery.querySelector('.gallery-next')?.addEventListener('click', () => render(index + 1));
+
+    let touchStartX = 0;
+    gallery.querySelector('.gallery-main')?.addEventListener('touchstart', (event) => {
+      touchStartX = event.changedTouches[0]?.clientX || 0;
+    }, { passive: true });
+    gallery.querySelector('.gallery-main')?.addEventListener('touchend', (event) => {
+      const deltaX = (event.changedTouches[0]?.clientX || 0) - touchStartX;
+      if (Math.abs(deltaX) > 45 && items.length > 1) render(index + (deltaX < 0 ? 1 : -1));
+    }, { passive: true });
+  });
+</script>
+
+</body>
+</html>
