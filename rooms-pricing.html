@@ -1,17 +1,15 @@
 <!DOCTYPE html>
+
 <html lang="zh-TW">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>越南 Retreat 2026｜房型與價格資訊</title>
-<meta name="description" content="7 天 6 夜，在越南順化 Alba Wellness Valley，跟著 Nandaji 透過瑜珈練習、調息法、冥想與 Satsang，完整地練習與學習。">
-
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css">
-
+<meta content="7 天 6 夜，在越南順化 Alba Wellness Valley，跟著 Nandaji 透過瑜珈練習、調息法、冥想與 Satsang，完整地練習與學習。" name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.44.0/tabler-icons.min.css" rel="stylesheet"/>
 <style>
   *,*::before,*::after{box-sizing:border-box}
   body{margin:0}
@@ -243,7 +241,7 @@
   .stay-grid{display:grid;gap:1.35rem;margin-top:1.5rem}
   .stay-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(58,54,46,.06)}
   .media-gallery{position:relative;background:rgba(255,255,255,.72)}
-  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12)}
+  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12);touch-action:pan-y}
   .gallery-main-picture{display:block;height:100%}
   .gallery-main-img{width:100%;height:100%;object-fit:cover;display:block}
   .gallery-control{position:absolute;top:50%;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;border:0;border-radius:999px;background:rgba(255,255,255,.82);color:var(--color-text);cursor:pointer;transform:translateY(-50%);box-shadow:0 3px 12px rgba(58,54,46,.16)}
@@ -255,6 +253,7 @@
   .gallery-thumb{flex:0 0 76px;height:96px;display:flex;align-items:center;justify-content:center;border:2px solid transparent;border-radius:8px;padding:0;background:rgba(255,255,255,.62);cursor:pointer}
   .gallery-thumb[aria-current="true"]{border-color:var(--color-secondary)}
   .gallery-thumb img{width:100%;height:100%;object-fit:contain;border-radius:6px;display:block}
+  .gallery-hint{display:none}
   .stay-gallery{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:.55rem;padding:.5rem;background:rgba(255,255,255,.72)}
   .stay-gallery .gallery-main{aspect-ratio:1.42}
   .stay-gallery .gallery-control{display:none}
@@ -313,7 +312,8 @@
   @media(max-width:860px){
     .stay-gallery{display:block;overflow:visible}
     .stay-gallery .gallery-main-img{min-height:0}
-    .gallery-thumbs{display:none}
+    .stay-gallery .gallery-thumbs{display:none}
+    .stay-gallery .gallery-hint{display:block;text-align:center;font-size:.78rem;color:var(--color-secondary);margin-top:.45rem}
     .stay-option{grid-template-columns:1fr;gap:.5rem}
     .stay-option>div:nth-child(2){text-align:left}
     .stay-option>div:nth-child(2) strong{white-space:normal}
@@ -322,6 +322,57 @@
   .policy-list{list-style:none;margin:0;padding:0}
   .policy-list li{display:flex;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--color-border)}
   .policy-list li:last-child{border-bottom:none}
+
+  .room-selector{max-width:var(--w-content);background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;box-shadow:0 2px 10px rgba(58,54,46,.05)}
+  .room-selector-title{margin:0 0 .4rem;font-family:var(--font-headline)!important;font-size:1.15rem!important;font-weight:700!important;color:var(--color-text)}
+  .room-selector-intro{margin:0 0 1.1rem;color:var(--color-secondary);font-size:.9rem}
+  .room-choices{display:grid;grid-template-columns:1fr;gap:.75rem}
+  @media(min-width:640px){.room-choices{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.room-choices{grid-template-columns:repeat(3,1fr)}}
+  .room-choice{display:block;width:100%;text-align:left;padding:1rem 1.1rem;border:1px solid var(--color-border);border-radius:10px;background:var(--color-bg);cursor:pointer;transition:border-color var(--transition),background var(--transition),transform var(--transition)}
+  .room-choice:hover{border-color:var(--color-secondary);transform:translateY(-1px)}
+  .room-choice:focus-visible{outline:3px solid var(--color-secondary);outline-offset:2px}
+  .room-choice[aria-pressed="true"]{border-color:var(--color-cta);background:rgba(217,164,65,.14)}
+  .room-choice-title{display:block;font-weight:700;font-size:.96rem;color:var(--color-text)}
+  .room-choice-copy{display:block;font-size:.82rem;color:var(--color-secondary);line-height:1.65}
+  .room-choice-topline{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.4rem}
+  .room-choice-badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .58rem;border-radius:999px;background:var(--color-cta);color:var(--color-on-cta);font-size:.72rem;font-weight:900;white-space:nowrap}
+  .room-choice-reason{display:block;margin-top:.65rem;padding-top:.6rem;border-top:1px solid rgba(217,164,65,.45);font-size:.8rem;font-weight:700;color:#6B4E19;line-height:1.6}
+  .room-choice--recommended{border:2px solid var(--color-cta);background:rgba(217,164,65,.12);box-shadow:0 7px 20px rgba(58,54,46,.09)}
+  .room-choice--recommended:hover{border-color:var(--color-cta);background:rgba(217,164,65,.17)}
+  .room-choice--recommended[aria-pressed="true"]{border-color:var(--color-cta);background:rgba(217,164,65,.2);box-shadow:0 8px 22px rgba(58,54,46,.12)}
+  @media(min-width:640px){.room-choice--recommended{grid-column:1/-1}}
+
+  .room-result{max-width:var(--w-content)}
+  .room-result[hidden]{display:none}
+  .room-result-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1rem}
+  .room-result-current{margin:0;font-size:.9rem;color:var(--color-secondary)}
+  .room-result-current strong{color:var(--color-text)}
+  .room-result-reset{border:0;border-bottom:1px solid currentColor;background:none;color:var(--color-secondary);padding:2px 0;cursor:pointer;font-size:.86rem;font-weight:700}
+  .room-result-reset:hover{color:var(--color-text)}
+
+  .stay-card[hidden]{display:none}
+
+  .room-block-list{display:grid;gap:1rem;margin-top:1.1rem}
+  .room-block{border-top:1px solid var(--color-border);padding-top:1rem;animation:roomFadeIn .25s ease both}
+  .room-block:first-child{border-top:0;padding-top:0}
+  .room-block[hidden]{display:none}
+  @keyframes roomFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .room-block-head{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
+  .room-block-name{font-size:1rem;font-weight:700;color:var(--color-text)}
+  .room-block-badge{display:inline-flex;padding:.15rem .55rem;border-radius:999px;background:rgba(124,139,111,.18);color:var(--color-secondary);font-size:.72rem;font-weight:700}
+  .room-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin-bottom:.75rem}
+  .room-fact{padding:.55rem .65rem;border-radius:8px;background:rgba(217,210,192,.28)}
+  .room-fact b{display:block;margin-bottom:.15rem;font-size:.7rem;color:var(--color-secondary);font-weight:700;letter-spacing:.03em}
+  .room-fact span{font-size:.85rem;color:var(--color-text);font-weight:600}
+  .room-spa{margin-bottom:.85rem;padding:.75rem .85rem;border:1px solid var(--color-border);border-radius:8px;background:rgba(255,255,255,.6)}
+  .room-spa-title{margin:0 0 .3rem;font-size:.7rem;font-weight:700;letter-spacing:.05em;color:var(--color-secondary)}
+  .room-spa-main{margin:0;font-size:.85rem;font-weight:700;color:var(--color-text)}
+  .room-spa-copy{margin:.25rem 0 0;font-size:.8rem;color:var(--color-secondary)}
+  .room-price-row{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem}
+  .room-price-kicker{font-size:.78rem;color:var(--color-secondary)}
+  .room-price{font-family:var(--font-headline)!important;font-size:1.25rem;font-weight:900;color:var(--color-text)}
+  .room-note{margin-top:.7rem;padding:.6rem .75rem;border-left:3px solid var(--color-cta);border-radius:0 8px 8px 0;background:rgba(217,164,65,.1);font-size:.8rem;color:var(--color-text)}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -347,184 +398,401 @@
     .day-card:has(.day-photo) .day-timeline{grid-column:2;grid-row:3;margin-top:.6rem}
   }
 </style>
-</head>
+<meta content="text-final-2026-08-04-1157" name="revision"/></head>
 <body>
-
 <nav class="site-nav" id="siteNav">
-  <div class="nav-inner">
-    <button class="mobile-menu-toggle" type="button" aria-expanded="false" aria-controls="mobileMenu">
-      <i class="ti ti-menu-2"></i><span>選單</span>
-    </button>
-    <div class="nav-left">
-      <a class="nav-brand" href="#top">覺醒僻靜營</a>
-      <ul class="nav-links">
-        <li><a href="#pricing">房型與價格</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-menu-inner">
-      <a href="#pricing">房型與價格 <i class="ti ti-chevron-right"></i></a>
-    </div>
-  </div>
+<div class="nav-inner">
+<button aria-controls="mobileMenu" aria-expanded="false" class="mobile-menu-toggle" type="button">
+<i class="ti ti-menu-2"></i><span>選單</span>
+</button>
+<div class="nav-left">
+<a class="nav-brand" href="#top">覺醒僻靜營</a>
+<ul class="nav-links">
+<li><a href="#pricing">房型與價格</a></li>
+</ul>
+</div>
+</div>
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-inner">
+<a href="#pricing">房型與價格 <i class="ti ti-chevron-right"></i></a>
+</div>
+</div>
 </nav>
-
 <a id="top"></a>
-
 <section id="hero">
-  <div class="hero-photo">
-    <img src="images/hero-forest-walk.jpg" alt="學員走在 Alba Wellness Valley 的林間步道中">
-    <div class="hero-overlay">
-      <h1>越南 Retreat 2026｜房型與價格資訊</h1>
-      <p class="hero-kicker">留七天，完整地練習一次。</p>
-      <p class="hero-subtitle">每天清晨練習，午後休息，晚間 Satsang。<br>讓身體的經驗與心中的理解，一起慢慢累積。</p>
-    </div>
-  </div>
-  <div class="container-tight hero-actions">
-    <div class="quick-info">
-      <span><i class="ti ti-calendar"></i>2026/12/18–24</span>
-      <span><i class="ti ti-map-pin"></i>Alba Wellness Valley, Hue</span>
-      <span><i class="ti ti-yoga"></i>帶領老師：Nandaji</span>
-    </div>
-  </div>
+<div class="hero-photo">
+<img alt="學員走在 Alba Wellness Valley 的林間步道中" src="images/hero-forest-walk.jpg"/>
+<div class="hero-overlay">
+<h1>越南 Retreat 2026｜房型與價格資訊</h1>
+<p class="hero-kicker">留七天，完整地練習一次。</p>
+<p class="hero-subtitle">每天清晨練習，午後休息，晚間 Satsang。<br/>讓身體的經驗與心中的理解，一起慢慢累積。</p>
+</div>
+</div>
+<div class="container-tight hero-actions">
+<div class="quick-info">
+<span><i class="ti ti-calendar"></i>2026/12/18–24</span>
+<span><i class="ti ti-map-pin"></i>Alba Wellness Valley, Hue</span>
+<span><i class="ti ti-yoga"></i>帶領老師：Nandaji</span>
+</div>
+</div>
 </section>
-
+<section id="environment">
+<div class="container-wide">
+<p class="section-eyebrow">環境與設施</p>
+<h2>Alba Wellness Valley 的日常場景</h2>
+<p style="color:var(--color-secondary);max-width:var(--w-read);margin-bottom:0">練習之外，餐廳、溫泉、水療與泳池都在同一個場域裡，減少不必要的移動。</p>
+<div class="facility-gallery">
+<div class="facility-item facility-large">
+<img alt="泳池與周圍自然環境" src="images/facility-pool.jpg"/>
+<span class="facility-caption">泳池與自然</span>
+</div>
+<div class="facility-item facility-large">
+<img alt="Alba 餐廳空間" src="images/facility-restaurant.jpg"/>
+<span class="facility-caption">餐廳</span>
+</div>
+<div class="facility-item">
+<img alt="室內溫泉池" src="images/facility-onsen-indoor.jpg"/>
+<span class="facility-caption">溫泉</span>
+</div>
+<div class="facility-item">
+<img alt="戶外溫泉池" src="images/facility-onsen-outdoor.jpg"/>
+<span class="facility-caption">戶外溫泉</span>
+</div>
+<div class="facility-item">
+<img alt="自然環境中的紅橋涼亭" src="images/facility-nature.jpg"/>
+<span class="facility-caption">自然環境</span>
+</div>
+</div>
+</div>
+</section>
 <section id="pricing" style="background:rgba(124,139,111,.14)">
-  <div class="container-wide">
-    <h2>住宿與費用</h2>
-    <p style="opacity:.8;margin-bottom:1.5rem;max-width:var(--w-read)">先選擇適合自己的住宿方式，再看費用。以下價格皆為新台幣，主行程為 7 天 6 夜，不含國際機票。</p>
+<div class="container-wide">
+<h2>住宿與費用</h2>
 
-    <div class="fee-summary">
-      <p><strong>費用包含：</strong>6 晚住宿、早午餐、晚餐、Nandaji 帶領的課程、團體機場接送、順化文化導覽、50 分鐘 Spa 療程，以及住宿期間的溫泉使用。</p>
-      <p><strong>費用不包含：</strong>國際機票、私人接送、會安延伸行程、旅遊保險、簽證費、自選活動與個人消費。</p>
-    </div>
+<div aria-labelledby="roomSelectorTitle" class="room-selector">
 
-    <div class="stay-grid">
-      <article class="stay-card">
-        <div class="stay-gallery media-gallery" data-gallery aria-label="花園客房照片">
-          <div class="gallery-main">
-            <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
-            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-01-900.webp" alt="花園客房房內空間" width="1400" height="993" loading="lazy" decoding="async"></picture>
-            <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
-            <div class="gallery-count" aria-live="polite">1 / 3</div>
-          </div>
-          <div class="gallery-thumbs" aria-label="選擇花園客房照片"></div>
-          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-01-900.webp","srcset":"images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w","thumb":"images/gallery/room-garden-01-320.webp","alt":"花園客房房內空間","width":"1400","height":"993"},{"src":"images/gallery/room-garden-02-900.webp","srcset":"images/gallery/room-garden-02-900.webp 900w, images/gallery/room-garden-02-1400.webp 1400w","thumb":"images/gallery/room-garden-02-320.webp","alt":"花園客房窗邊與床鋪空間","width":"1400","height":"934"},{"src":"images/gallery/room-garden-03-900.webp","srcset":"images/gallery/room-garden-03-900.webp 900w, images/gallery/room-garden-03-1400.webp 1400w","thumb":"images/gallery/room-garden-03-320.webp","alt":"花園客房住宿細節","width":"1400","height":"936"}]</script>
-        </div>
-        <div class="stay-body">
-          <div class="stay-heading">
-            <p class="stay-kicker">Garden Rooms</p>
-            <h3>花園客房</h3>
-            <p>花園客房位於主建築，空間安靜舒適。</p>
-          </div>
-          <div class="stay-fit">
-            <h4>房型特色</h4>
-            <div class="stay-features">
-              <span class="stay-feature"><i class="ti ti-building"></i>主建築</span>
-              <span class="stay-feature"><i class="ti ti-ruler-2"></i>25–35㎡</span>
-              <span class="stay-feature"><i class="ti ti-users"></i>單人或雙人入住</span>
-            </div>
-          </div>
-          <div class="stay-options" aria-label="花園客房費用">
-            <div class="stay-option"><div><strong>花園雙床客房</strong><span>2 人入住・2 張單人床</span></div><div><strong>NT$32,800</strong><span>每人費用</span></div></div>
-            <div class="stay-option"><div><strong>花園單人客房</strong><span>1 人入住・25㎡</span></div><div><strong>NT$39,800</strong><span>每人費用</span></div></div>
-            <div class="stay-option"><div><strong>花園景觀單人房</strong><span>1 人入住・35㎡</span></div><div><strong>NT$42,800</strong><span>每人費用</span></div></div>
-          </div>
-        </div>
-      </article>
 
-      <article class="stay-card">
-        <div class="stay-gallery media-gallery" data-gallery aria-label="庭園雙臥木屋照片">
-          <div class="gallery-main">
-            <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
-            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-bungalow-01-900.webp" alt="庭園雙臥木屋臥室空間" width="1400" height="934" loading="lazy" decoding="async"></picture>
-            <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
-            <div class="gallery-count" aria-live="polite">1 / 3</div>
-          </div>
-          <div class="gallery-thumbs" aria-label="選擇庭園雙臥木屋照片"></div>
-          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-bungalow-01-900.webp","srcset":"images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-01-320.webp","alt":"庭園雙臥木屋臥室空間","width":"1400","height":"934"},{"src":"images/gallery/room-garden-bungalow-02-900.webp","srcset":"images/gallery/room-garden-bungalow-02-900.webp 900w, images/gallery/room-garden-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-02-320.webp","alt":"庭園雙臥木屋客廳空間","width":"1400","height":"935"},{"src":"images/gallery/room-garden-bungalow-03-900.webp","srcset":"images/gallery/room-garden-bungalow-03-900.webp 900w, images/gallery/room-garden-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-03-320.webp","alt":"庭園雙臥木屋住宿細節","width":"1400","height":"935"}]</script>
-        </div>
-        <div class="stay-body">
-          <div class="stay-heading">
-            <p class="stay-kicker">Garden Bungalow</p>
-            <h3>庭園雙臥木屋</h3>
-            <p>110㎡ 雙臥木屋包含兩間臥室與獨立客廳，適合三至四位同行整棟預訂。</p>
-          </div>
-          <div class="stay-fit">
-            <h4>房型特色</h4>
-            <div class="stay-features">
-              <span class="stay-feature"><i class="ti ti-ruler-2"></i>110㎡</span>
-              <span class="stay-feature"><i class="ti ti-bed"></i>兩間臥室</span>
-              <span class="stay-feature"><i class="ti ti-armchair"></i>獨立客廳</span>
-              <span class="stay-feature"><i class="ti ti-users-group"></i>三至四位同行</span>
-            </div>
-          </div>
-          <div class="stay-plan" aria-label="庭園雙臥木屋費用">
-            <div class="stay-plan-main">
-              <p class="stay-plan-kicker">⭐ 推薦｜四位同行</p>
-              <div class="stay-plan-title"><strong>庭園雙臥木屋整棟入住</strong><span class="stay-plan-price">NT$36,800／人</span></div>
+<div aria-label="入住方式" class="room-choices" role="group">
 
-            </div>
-            <div class="stay-plan-sub"><strong>亦可三位同行</strong><span>NT$40,800／人</span></div>
-          </div>
-        </div>
-      </article>
 
-      <article class="stay-card">
-        <div class="stay-gallery media-gallery" data-gallery aria-label="獨棟庭園木屋照片">
-          <div class="gallery-main">
-            <button class="gallery-control gallery-prev" type="button" aria-label="上一張照片"><i class="ti ti-chevron-left"></i></button>
-            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-private-bungalow-01-900.webp" alt="獨棟庭園木屋外觀" width="1400" height="936" loading="lazy" decoding="async"></picture>
-            <button class="gallery-control gallery-next" type="button" aria-label="下一張照片"><i class="ti ti-chevron-right"></i></button>
-            <div class="gallery-count" aria-live="polite">1 / 3</div>
-          </div>
-          <div class="gallery-thumbs" aria-label="選擇獨棟庭園木屋照片"></div>
-          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-private-bungalow-01-900.webp","srcset":"images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-01-320.webp","alt":"獨棟庭園木屋外觀","width":"1400","height":"936"},{"src":"images/gallery/room-private-bungalow-02-900.webp","srcset":"images/gallery/room-private-bungalow-02-900.webp 900w, images/gallery/room-private-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-02-320.webp","alt":"獨棟庭園木屋室內空間","width":"1400","height":"934"},{"src":"images/gallery/room-private-bungalow-03-900.webp","srcset":"images/gallery/room-private-bungalow-03-900.webp 900w, images/gallery/room-private-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-03-320.webp","alt":"獨棟庭園木屋臥室細節","width":"1400","height":"935"}]</script>
-        </div>
-        <div class="stay-body">
-          <div class="stay-heading">
-            <p class="stay-kicker">Private Bungalow</p>
-            <h3>獨棟庭園木屋</h3>
-            <p>70㎡ 獨棟木屋是較獨立的住宿空間，適合希望擁有完整私人感與安靜休息節奏的學員，兩人同行入住。</p>
-          </div>
-          <div class="stay-fit">
-            <h4>房型特色</h4>
-            <div class="stay-features">
-              <span class="stay-feature"><i class="ti ti-ruler-2"></i>70㎡</span>
-              <span class="stay-feature"><i class="ti ti-home"></i>獨棟住宿</span>
-              <span class="stay-feature"><i class="ti ti-leaf"></i>安靜獨立空間</span>
-              <span class="stay-feature"><i class="ti ti-users"></i>兩人入住</span>
-            </div>
-          </div>
-          <div class="stay-options" aria-label="獨棟庭園木屋費用">
-            <div class="stay-option"><div><strong>兩人入住・雙床房</strong><span>適合朋友同行・70㎡ 獨棟木屋</span></div><div><strong>NT$45,800</strong><span>每人費用</span></div></div>
-            <div class="stay-option"><div><strong>兩人入住・大床房</strong><span>70㎡ 獨棟木屋</span></div><div><strong>NT$45,800</strong><span>每人費用</span></div></div>
-          </div>
-        </div>
-      </article>
-    </div>
-    <div class="agency-note">
-      <h3>當地行程協作</h3>
-      <p>越南當地交通、住宿與行程銜接，將由合作旅行社協助執行；課程規劃與學員聯繫由主辦單位負責。</p>
-    </div>
-  </div>
+
+
+<button aria-pressed="false" class="room-choice room-choice--recommended" data-choice="four" type="button">
+<span class="room-choice-topline">
+<span class="room-choice-title">四位同行｜庭園雙臥木屋</span>
+<span class="room-choice-badge"><i class="ti ti-star-filled"></i>推薦</span>
+</span>
+<span class="room-choice-copy">110㎡，兩間臥室＋獨立客廳，四人一起入住最合適。</span>
+</button><button aria-pressed="false" class="room-choice" data-choice="three" type="button">
+<span class="room-choice-topline"><span class="room-choice-title">三位同行｜庭園雙臥木屋</span></span>
+<span class="room-choice-copy">三人一起入住 110㎡ 木屋，兩間臥室與客廳。</span>
+</button><button aria-pressed="false" class="room-choice" data-choice="two" type="button">
+<span class="room-choice-topline"><span class="room-choice-title">兩位同行｜兩種房型</span></span>
+<span class="room-choice-copy">花園雙床客房｜小資方案<br/>獨棟庭園木屋｜空間升級</span>
+</button><button aria-pressed="false" class="room-choice" data-choice="solo" type="button">
+<span class="room-choice-topline"><span class="room-choice-title">一個人入住｜單人房</span></span>
+<span class="room-choice-copy">保有自己的房間，有25㎡或35㎡兩種不同空間可選擇</span>
+</button></div>
+</div>
+<div class="fee-summary">
+<p><strong>包含：</strong> 6 晚住宿、早午餐、晚餐、Nandaji 帶領的課程、團體機場接送、順化文化導覽、依照房型單次50分鐘Spa療程，以及住宿期間的溫泉使用。</p>
+<p><strong>不包含：</strong> 國際機票、旅遊保險與簽證費；私人接送、會安延伸行程、僻靜中心內的自選活動及個人消費另計。</p>
+</div>
+<div class="room-result" hidden="" id="roomResult">
+<div class="room-result-toolbar">
+<p class="room-result-current">目前選擇：<strong id="roomResultLabel"></strong></p>
+<button class="room-result-reset" id="roomResultReset" type="button">重新選擇</button>
+</div>
+</div>
+<div class="stay-grid" id="stayGrid">
+<article class="stay-card" hidden="">
+<div aria-label="花園單人房 25㎡照片" class="stay-gallery media-gallery" data-gallery="">
+<div class="gallery-main">
+<button aria-label="上一張照片" class="gallery-control gallery-prev" type="button"><i class="ti ti-chevron-left"></i></button>
+<picture class="gallery-main-picture"><source class="gallery-source" sizes="(max-width: 860px) 100vw, 1040px" srcset="images/gallery/room-single25-01-900.webp 900w, images/gallery/room-single25-01-1400.webp 1400w" type="image/webp"/><img alt="花園單人房 25㎡房內空間，1 張大床" class="gallery-main-img" decoding="async" height="853" loading="lazy" src="images/gallery/room-single25-01-900.webp" width="1280"/></picture>
+<button aria-label="下一張照片" class="gallery-control gallery-next" type="button"><i class="ti ti-chevron-right"></i></button>
+<div aria-live="polite" class="gallery-count">1 / 3</div>
+</div>
+<div aria-label="選擇花園單人房 25㎡照片" class="gallery-thumbs"></div>
+<script class="gallery-data" type="application/json">[{"src":"images/gallery/room-single25-01-900.webp","srcset":"images/gallery/room-single25-01-900.webp 900w, images/gallery/room-single25-01-1400.webp 1400w","thumb":"images/gallery/room-single25-01-320.webp","alt":"花園單人房 25㎡房內空間，1 張大床","width":"1280","height":"853"},{"src":"images/gallery/room-single25-02-900.webp","srcset":"images/gallery/room-single25-02-900.webp 900w, images/gallery/room-single25-02-1400.webp 1400w","thumb":"images/gallery/room-single25-02-320.webp","alt":"花園單人房 25㎡建築外觀","width":"1280","height":"853"},{"src":"images/gallery/room-single25-03-900.webp","srcset":"images/gallery/room-single25-03-900.webp 900w, images/gallery/room-single25-03-1400.webp 1400w","thumb":"images/gallery/room-single25-03-320.webp","alt":"花園單人房 25㎡衛浴空間","width":"1200","height":"929"}]</script>
+</div>
+<div class="stay-body">
+<div class="stay-heading">
+
+<h3>花園單人房</h3>
+<p>花園單人房位於主建築，空間安靜舒適，適合一人入住。</p>
+</div>
+<div class="stay-fit">
+<h4>房型特色</h4>
+<div class="stay-features">
+<span class="stay-feature"><i class="ti ti-building"></i>位於園區主建築內</span>
+<span class="stay-feature"><i class="ti ti-ruler-2"></i>25㎡</span>
+<span class="stay-feature"><i class="ti ti-user"></i>單人入住</span>
+</div>
+</div>
+<div aria-label="花園單人房 25㎡費用" class="room-block-list">
+<div class="room-block" data-room="single-25" hidden="">
+<div class="room-block-head"><strong class="room-block-name">單人房 25㎡</strong></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>1 人</span></div>
+<div class="room-fact"><b>床型</b><span>1 張大床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘全身 SPA 療程。</p>
+<p class="room-spa-copy">在練習之後，享受更完整的身體放鬆與修復。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$39,800</strong></div>
+</div>
+</div>
+</div>
+</article>
+<article class="stay-card" hidden="">
+<div aria-label="花園單人房 35㎡照片" class="stay-gallery media-gallery" data-gallery="">
+<div class="gallery-main">
+<button aria-label="上一張照片" class="gallery-control gallery-prev" type="button"><i class="ti ti-chevron-left"></i></button>
+<picture class="gallery-main-picture"><source class="gallery-source" sizes="(max-width: 860px) 100vw, 1040px" srcset="images/gallery/room-single35-01-900.webp 900w, images/gallery/room-single35-01-1400.webp 1400w" type="image/webp"/><img alt="花園單人房 35㎡房內空間，1 張特大雙人床" class="gallery-main-img" decoding="async" height="853" loading="lazy" src="images/gallery/room-single35-01-900.webp" width="1280"/></picture>
+<button aria-label="下一張照片" class="gallery-control gallery-next" type="button"><i class="ti ti-chevron-right"></i></button>
+<div aria-live="polite" class="gallery-count">1 / 3</div>
+</div>
+<div aria-label="選擇花園單人房 35㎡照片" class="gallery-thumbs"></div>
+<script class="gallery-data" type="application/json">[{"src":"images/gallery/room-single35-01-900.webp","srcset":"images/gallery/room-single35-01-900.webp 900w, images/gallery/room-single35-01-1400.webp 1400w","thumb":"images/gallery/room-single35-01-320.webp","alt":"花園單人房 35㎡房內空間，1 張特大雙人床","width":"1280","height":"853"},{"src":"images/gallery/room-single35-02-900.webp","srcset":"images/gallery/room-single35-02-900.webp 900w, images/gallery/room-single35-02-1400.webp 1400w","thumb":"images/gallery/room-single35-02-320.webp","alt":"花園單人房 35㎡陽台","width":"1280","height":"853"},{"src":"images/gallery/room-single35-03-900.webp","srcset":"images/gallery/room-single35-03-900.webp 900w, images/gallery/room-single35-03-1400.webp 1400w","thumb":"images/gallery/room-single35-03-320.webp","alt":"花園單人房 35㎡衛浴空間","width":"1280","height":"853"}]</script>
+</div>
+<div class="stay-body">
+<div class="stay-heading">
+
+<h3>花園單人房 35㎡</h3>
+<p>花園單人房 35㎡空間更寬敞，配有加大雙人床，適合重視住宿空間的參加者。</p>
+</div>
+<div class="stay-fit">
+<h4>房型特色</h4>
+<div class="stay-features">
+<span class="stay-feature"><i class="ti ti-building"></i>位於園區主建築內</span>
+<span class="stay-feature"><i class="ti ti-ruler-2"></i>35㎡</span>
+<span class="stay-feature"><i class="ti ti-user"></i>單人入住</span>
+</div>
+</div>
+<div aria-label="花園單人房 35㎡費用" class="room-block-list">
+<div class="room-block" data-room="single-35" hidden="">
+<div class="room-block-head"><strong class="room-block-name">單人房 35㎡</strong></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>1 人</span></div>
+<div class="room-fact"><b>床型</b><span>1 張大床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘全身 SPA 療程。</p>
+<p class="room-spa-copy">在練習之後，享受更完整的身體放鬆與修復。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$42,800</strong></div>
+</div>
+</div>
+</div>
+</article>
+<article class="stay-card" hidden="">
+<div aria-label="花園雙床客房照片" class="stay-gallery media-gallery" data-gallery="">
+<div class="gallery-main">
+<button aria-label="上一張照片" class="gallery-control gallery-prev" type="button"><i class="ti ti-chevron-left"></i></button>
+<picture class="gallery-main-picture"><source class="gallery-source" sizes="(max-width: 860px) 100vw, 1040px" srcset="images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w" type="image/webp"/><img alt="花園雙床客房房內空間" class="gallery-main-img" decoding="async" height="993" loading="lazy" src="images/gallery/room-garden-01-900.webp" width="1400"/></picture>
+<button aria-label="下一張照片" class="gallery-control gallery-next" type="button"><i class="ti ti-chevron-right"></i></button>
+<div aria-live="polite" class="gallery-count">1 / 3</div>
+</div>
+<div aria-label="選擇花園雙床客房照片" class="gallery-thumbs"></div>
+<script class="gallery-data" type="application/json">[{"src":"images/gallery/room-garden-01-900.webp","srcset":"images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w","thumb":"images/gallery/room-garden-01-320.webp","alt":"花園雙床客房房內空間","width":"1400","height":"993"},{"src":"images/gallery/room-garden-02-900.webp","srcset":"images/gallery/room-garden-02-900.webp 900w, images/gallery/room-garden-02-1400.webp 1400w","thumb":"images/gallery/room-garden-02-320.webp","alt":"花園雙床客房窗邊與床鋪空間","width":"1400","height":"934"},{"src":"images/gallery/room-garden-03-900.webp","srcset":"images/gallery/room-garden-03-900.webp 900w, images/gallery/room-garden-03-1400.webp 1400w","thumb":"images/gallery/room-garden-03-320.webp","alt":"花園雙床客房住宿細節","width":"1400","height":"936"}]</script>
+</div>
+<div class="stay-body">
+<div class="stay-heading">
+
+<h3>花園雙床客房</h3>
+<p>花園雙床客房位於主建築，空間安靜舒適，適合兩位同行共住。</p>
+</div>
+<div class="stay-fit">
+<h4>房型特色</h4>
+<div class="stay-features">
+<span class="stay-feature"><i class="ti ti-building"></i>位於園區主建築內</span>
+<span class="stay-feature"><i class="ti ti-ruler-2"></i>35㎡</span>
+<span class="stay-feature"><i class="ti ti-users"></i>雙人入住</span>
+</div>
+</div>
+<div aria-label="花園雙床客房費用" class="room-block-list">
+<div class="room-block" data-room="twin-35" hidden="">
+<div class="room-block-head"><strong class="room-block-name">花園雙床客房 35㎡</strong></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>2 人</span></div>
+<div class="room-fact"><b>床型</b><span>2 張單人床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘 SPA 療程。</p>
+<p class="room-spa-copy">療程以雙足與臉部舒緩為主，讓練習後的身體慢慢放鬆。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$32,800</strong></div>
+</div>
+</div>
+</div>
+</article>
+<article class="stay-card" hidden="">
+<div aria-label="庭園雙臥木屋照片" class="stay-gallery media-gallery" data-gallery="">
+<div class="gallery-main">
+<button aria-label="上一張照片" class="gallery-control gallery-prev" type="button"><i class="ti ti-chevron-left"></i></button>
+<picture class="gallery-main-picture"><source class="gallery-source" sizes="(max-width: 860px) 100vw, 1040px" srcset="images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w" type="image/webp"/><img alt="庭園雙臥木屋臥室空間" class="gallery-main-img" decoding="async" height="934" loading="lazy" src="images/gallery/room-garden-bungalow-01-900.webp" width="1400"/></picture>
+<button aria-label="下一張照片" class="gallery-control gallery-next" type="button"><i class="ti ti-chevron-right"></i></button>
+<div aria-live="polite" class="gallery-count">1 / 3</div>
+</div>
+<div aria-label="選擇庭園雙臥木屋照片" class="gallery-thumbs"></div>
+<script class="gallery-data" type="application/json">[{"src":"images/gallery/room-garden-bungalow-01-900.webp","srcset":"images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-01-320.webp","alt":"庭園雙臥木屋臥室空間","width":"1400","height":"934"},{"src":"images/gallery/room-garden-bungalow-02-900.webp","srcset":"images/gallery/room-garden-bungalow-02-900.webp 900w, images/gallery/room-garden-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-02-320.webp","alt":"庭園雙臥木屋客廳空間","width":"1400","height":"935"},{"src":"images/gallery/room-garden-bungalow-03-900.webp","srcset":"images/gallery/room-garden-bungalow-03-900.webp 900w, images/gallery/room-garden-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-03-320.webp","alt":"庭園雙臥木屋住宿細節","width":"1400","height":"935"}]</script>
+</div>
+<div class="stay-body">
+<div class="stay-heading">
+
+<h3>庭園雙臥木屋</h3>
+<p>110㎡ 整棟入住，包含兩間臥室與獨立客廳。四位同行優先建議此房型；三位同行也可選擇整棟入住。</p>
+</div>
+<div class="stay-fit">
+<h4>房型特色</h4>
+<div class="stay-features">
+<span class="stay-feature"><i class="ti ti-ruler-2"></i>110㎡</span>
+<span class="stay-feature"><i class="ti ti-bed"></i>兩間臥室</span>
+<span class="stay-feature"><i class="ti ti-armchair"></i>獨立客廳</span>
+<span class="stay-feature"><i class="ti ti-users-group"></i>三至四位同行</span>
+</div>
+</div>
+<div aria-label="庭園雙臥木屋費用" class="room-block-list">
+<div class="room-block" data-room="villa-110-four" hidden="">
+<div class="room-block-head"><strong class="room-block-name">四人庭園雙臥木屋</strong><span class="room-block-badge">四人同行推薦</span></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>4 人</span></div>
+<div class="room-fact"><b>床型</b><span>1 張加大床＋2 張單人床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘全身 SPA 療程。</p>
+<p class="room-spa-copy">在練習之後，享受更完整的身體放鬆與修復。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$36,800</strong></div>
+<div class="room-note">床位提醒： 其中兩位共用 1 張加大床，另外兩位各有 1 張單人床，請自行安排床位。</div>
+</div>
+<div class="room-block" data-room="villa-110-three" hidden="">
+<div class="room-block-head"><strong class="room-block-name">三人庭園雙臥木屋</strong></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>3 人</span></div>
+<div class="room-fact"><b>床型</b><span>1 張加大床＋2 張單人床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘全身 SPA 療程。</p>
+<p class="room-spa-copy">在練習之後，享受更完整的身體放鬆與修復。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$40,800</strong></div>
+</div>
+</div>
+</div>
+</article>
+<article class="stay-card" hidden="">
+<div aria-label="獨棟庭園木屋照片" class="stay-gallery media-gallery" data-gallery="">
+<div class="gallery-main">
+<button aria-label="上一張照片" class="gallery-control gallery-prev" type="button"><i class="ti ti-chevron-left"></i></button>
+<picture class="gallery-main-picture"><source class="gallery-source" sizes="(max-width: 860px) 100vw, 1040px" srcset="images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w" type="image/webp"/><img alt="獨棟庭園木屋外觀" class="gallery-main-img" decoding="async" height="936" loading="lazy" src="images/gallery/room-private-bungalow-01-900.webp" width="1400"/></picture>
+<button aria-label="下一張照片" class="gallery-control gallery-next" type="button"><i class="ti ti-chevron-right"></i></button>
+<div aria-live="polite" class="gallery-count">1 / 3</div>
+</div>
+<div aria-label="選擇獨棟庭園木屋照片" class="gallery-thumbs"></div>
+<script class="gallery-data" type="application/json">[{"src":"images/gallery/room-private-bungalow-01-900.webp","srcset":"images/gallery/room-private-bungalow-01-900.webp 900w, images/gallery/room-private-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-01-320.webp","alt":"獨棟庭園木屋外觀","width":"1400","height":"936"},{"src":"images/gallery/room-private-bungalow-02-900.webp","srcset":"images/gallery/room-private-bungalow-02-900.webp 900w, images/gallery/room-private-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-02-320.webp","alt":"獨棟庭園木屋室內空間","width":"1400","height":"934"},{"src":"images/gallery/room-private-bungalow-03-900.webp","srcset":"images/gallery/room-private-bungalow-03-900.webp 900w, images/gallery/room-private-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-private-bungalow-03-320.webp","alt":"獨棟庭園木屋臥室細節","width":"1400","height":"935"}]</script>
+</div>
+<div class="stay-body">
+<div class="stay-heading">
+
+<h3>獨棟庭園木屋</h3>
+<p>70㎡ 獨棟木屋是較獨立的住宿空間，適合希望擁有完整私人感與安靜休息節奏的學員，兩人同行入住。</p>
+</div>
+<div class="stay-fit">
+<h4>房型特色</h4>
+<div class="stay-features">
+<span class="stay-feature"><i class="ti ti-ruler-2"></i>70㎡</span>
+<span class="stay-feature"><i class="ti ti-home"></i>獨棟住宿</span>
+<span class="stay-feature"><i class="ti ti-leaf"></i>安靜獨立空間</span>
+<span class="stay-feature"><i class="ti ti-users"></i>兩人入住</span>
+</div>
+</div>
+<div aria-label="獨棟庭園木屋費用" class="room-block-list">
+<div class="room-block" data-room="villa-70-double" hidden="">
+<div class="room-block-head"><strong class="room-block-name">獨棟庭園木屋雙人</strong><span class="room-block-badge">空間升級</span></div>
+<div class="room-facts">
+<div class="room-fact"><b>入住人數</b><span>2 人</span></div>
+<div class="room-fact"><b>床型</b><span>2 張單人床或 1 張加大床</span></div>
+</div>
+<div class="room-spa">
+<p class="room-spa-title">SPA 療程</p>
+<p class="room-spa-main">包含一次 50 分鐘全身 SPA 療程。</p>
+<p class="room-spa-copy">在練習之後，享受更完整的身體放鬆與修復。</p>
+</div>
+<div class="room-price-row"><span class="room-price-kicker">每人費用</span><strong class="room-price">NT$45,800</strong></div>
+</div>
+</div>
+</div>
+</article>
+</div>
+<div class="agency-note">
+<h3>當地行程協作</h3>
+<p>越南當地交通、住宿與行程銜接，將由合作旅行社協助執行；課程規劃與學員聯繫由主辦單位負責。</p>
+</div>
+<div class="card" style="margin-top:1.5rem;background:rgba(124,139,111,.14);border-style:dashed">
+<h3><i class="ti ti-map-2"></i> 會安延伸行程（另計，2026/12/24–26）</h3>
+<p style="font-size:.92rem;margin-bottom:.5rem">七日主行程結束後，可選擇繼續前往會安，入住五星級飯店 2 晚，放慢腳步，感受越南中部不同的文化風景。</p>
+<p style="font-size:.92rem;margin-bottom:.5rem">延伸行程費用另計，可於報名時一併選擇房型與確認安排。部分體驗活動可自由選擇是否參加。</p>
+<div class="extension-prices">
+<span>雙床房：NT$5,500／人</span>
+<span>單人房：NT$7,500／人</span>
+</div>
+<details class="extension-detail">
+<summary>第 1 天｜順化－蘭珂海灘－會安古城</summary>
+<p>從順化南下前往會安，途中停留蘭珂海灘，欣賞越南中部的海岸景色。</p>
+<p>下午由導覽人員帶領漫步會安古城，認識古城街道、寺廟與河岸文化。導覽結束後可自由探索古城，在河岸散步，或走訪咖啡館與特色小店。</p>
+<p>晚上自由活動，可欣賞點亮燈籠的古城夜景，並前往夜市逛逛當地手工藝品與小店。</p>
+<div class="mini-gallery">
+<img alt="蘭珂海灘與海岸景色" src="images/ext-day1-langco-beach.webp"/>
+<img alt="會安古城河岸、船隻與古城街景" src="images/ext-day1-hoian-old-town.jpeg"/>
+</div>
+</details>
+<details class="extension-detail">
+<summary>第 2 天｜美山聖地</summary>
+<p>清晨前往美山聖地。這裡是 UNESCO 世界文化遺產，也是古代占婆王國的重要宗教中心。占婆文化深受印度教影響，尤其以濕婆神信仰為核心。</p>
+<p>在山林環繞的遺址之中，認識占婆王國的歷史、信仰與建築文化。美山聖地門票已包含於行程費用中。</p>
+<div class="mini-gallery">
+<img alt="美山聖地的占婆遺址與磚石建築" src="images/ext-day2-myson.jpg"/>
+</div>
+<p>返回會安後，可自由休息，或選擇參加以下自費活動：</p>
+<ul style="padding-left:1.1rem">
+<li>迦南島椰林竹籃船體驗：搭乘傳統竹籃船，穿梭於水椰林之間</li>
+<li>《會安印象》大型戶外藝術演出</li>
+</ul>
+</details>
+<details class="extension-detail">
+<summary>第 3 天｜返程</summary>
+<p>早餐後辦理退房，依團體航班時間安排接送，前往峴港國際機場。</p>
+</details>
+<details class="extension-detail">
+<summary>延伸行程費用包含／不包含</summary>
+<p><strong>費用包含：</strong> 會安五星級飯店住宿 2 晚、順化至會安交通、蘭珂海灘停留、會安古城導覽、美山聖地交通與門票、飯店至峴港國際機場團體接送。</p>
+<p><strong>費用不包含：</strong> 行程中的餐食與個人消費、迦南島椰林竹籃船體驗、《會安印象》大型戶外藝術演出、其他未列明的自費活動。</p>
+</details>
+</div>
+</div>
 </section>
-
 <section id="organizer" style="background:var(--color-text);padding:2.5rem 0">
-  <div class="container-wide organizer-grid">
-    <div>
-      <p class="section-eyebrow" style="color:rgba(255,255,255,.55)">主辦單位</p>
-      <h2 class="organizer-heading">禪圓瑜珈工作室</h2>
-    </div>
-    <div class="organizer-copy">
-      <p>禪圓瑜珈工作室長期教授艾揚格瑜伽。</p>
-      <p>我們重視的，是在不同的身體條件裡，慢慢找到適合自己的練習方向。</p>
-      <p>這次七天旅修，是把平常教室裡重視的練習、觀察與休息，放進一段更完整的時間裡。</p>
-      <p style="font-size:.9rem;opacity:.7">本次旅修由禪圓瑜珈與 Salamba Taiwan 協助規劃與聯繫。</p>
-    </div>
-  </div>
+<div class="container-wide organizer-grid">
+<div>
+<p class="section-eyebrow" style="color:rgba(255,255,255,.55)">主辦單位</p>
+<h2 class="organizer-heading">禪圓瑜珈工作室</h2>
+</div>
+<div class="organizer-copy">
+<p>禪圓瑜珈工作室長期教授艾揚格瑜伽。</p>
+<p>我們重視的，是在不同的身體條件裡，慢慢找到適合自己的練習方向。</p>
+<p>這次七天旅修，是把平常教室裡重視的練習、觀察與休息，放進一段更完整的時間裡。</p>
+<p style="font-size:.9rem;opacity:.7">本次旅修由禪圓瑜珈與 Salamba Taiwan 協助規劃與聯繫。</p>
+</div>
+</div>
 </section>
-
 <script>
   const nav = document.getElementById('siteNav');
   const menuToggle = document.querySelector('.mobile-menu-toggle');
@@ -593,6 +861,9 @@
     const thumbs = gallery.querySelector('.gallery-thumbs');
     const main = gallery.querySelector('.gallery-main');
     const isStayGallery = gallery.classList.contains('stay-gallery');
+    const hint = document.createElement('div');
+    hint.className = 'gallery-hint';
+    hint.textContent = '可左右滑動看更多照片';
     let items = [];
     let index = 0;
     let touchStartX = 0;
@@ -604,6 +875,9 @@
     }
 
     if (!items.length || !img || !source || !count) return;
+    if (items.length > 1 && main && !gallery.querySelector('.gallery-hint')) {
+      main.insertAdjacentElement('afterend', hint);
+    }
 
     const render = (nextIndex) => {
       index = (nextIndex + items.length) % items.length;
@@ -632,14 +906,13 @@
       button.setAttribute('aria-label', `查看第 ${i + 1} 張照片`);
       button.setAttribute('aria-current', String(i === 0));
       button.innerHTML = `<img src="${item.thumb}" alt="" width="320" height="240" loading="lazy" decoding="async">`;
-      button.addEventListener('click', () => isStayGallery ? openLightbox(item) : render(i));
+      button.addEventListener('click', () => render(i));
       thumbs?.appendChild(button);
     });
 
     render(0);
     if (isStayGallery) {
-      main?.addEventListener('click', () => openLightbox(items[0]));
-      return;
+      main?.addEventListener('click', () => openLightbox(items[index]));
     }
     gallery.querySelector('.gallery-prev')?.addEventListener('click', () => render(index - 1));
     gallery.querySelector('.gallery-next')?.addEventListener('click', () => render(index + 1));
@@ -651,7 +924,68 @@
       if (Math.abs(deltaX) > 45 && items.length > 1) render(index + (deltaX < 0 ? 1 : -1));
     }, { passive: true });
   });
-</script>
 
+  const roomChoiceMap = {
+    'four': { label: '四位同行｜庭園雙臥木屋', rooms: ['villa-110-four'] },
+    'two': { label: '兩位同行｜兩種房型', rooms: ['twin-35', 'villa-70-double'] },
+    'solo': { label: '一個人入住｜單人房', rooms: ['single-25', 'single-35'] },
+    'three': { label: '三位同行｜庭園雙臥木屋', rooms: ['villa-110-three'] }
+  };
+
+  const roomChoiceButtons = [...document.querySelectorAll('.room-choice')];
+  const roomResult = document.getElementById('roomResult');
+  const roomResultLabel = document.getElementById('roomResultLabel');
+  const roomResultReset = document.getElementById('roomResultReset');
+  const roomSelector = document.querySelector('.room-selector');
+  const stayGrid = document.getElementById('stayGrid');
+  const stayCards = [...document.querySelectorAll('#stayGrid .stay-card')];
+
+  function showRoomChoice(key) {
+    const data = roomChoiceMap[key];
+    if (!data) return;
+
+    roomChoiceButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', button.dataset.choice === key ? 'true' : 'false');
+    });
+
+    const matchedCards = [];
+    stayCards.forEach((card) => {
+      const blocks = [...card.querySelectorAll('[data-room]')];
+      const matched = blocks.filter((block) => data.rooms.includes(block.dataset.room));
+      card.hidden = matched.length === 0;
+      blocks.forEach((block) => { block.hidden = !data.rooms.includes(block.dataset.room); });
+      if (matched.length) {
+        const firstMatchIndex = Math.min(...matched.map((block) => data.rooms.indexOf(block.dataset.room)).filter((idx) => idx > -1));
+        matchedCards.push({ card, firstMatchIndex });
+      }
+    });
+
+    matchedCards.sort((a, b) => a.firstMatchIndex - b.firstMatchIndex).forEach(({ card }) => {
+      stayGrid?.appendChild(card);
+    });
+
+    if (roomResultLabel) roomResultLabel.textContent = data.label;
+    if (roomResult) roomResult.hidden = false;
+
+    window.setTimeout(() => {
+      roomResult?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  }
+
+  function resetRoomChoice() {
+    roomChoiceButtons.forEach((button) => button.setAttribute('aria-pressed', 'false'));
+    if (roomResult) roomResult.hidden = true;
+    stayCards.forEach((card) => {
+      card.hidden = true;
+      card.querySelectorAll('[data-room]').forEach((block) => { block.hidden = true; });
+    });
+    roomSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  roomChoiceButtons.forEach((button) => {
+    button.addEventListener('click', () => showRoomChoice(button.dataset.choice));
+  });
+  roomResultReset?.addEventListener('click', resetRoomChoice);
+</script>
 </body>
 </html>
