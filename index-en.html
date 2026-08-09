@@ -243,7 +243,7 @@
   .stay-grid{display:grid;gap:1.35rem;margin-top:1.5rem}
   .stay-card{background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;overflow:hidden;box-shadow:0 3px 14px rgba(58,54,46,.06)}
   .media-gallery{position:relative;background:rgba(255,255,255,.72)}
-  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12)}
+  .gallery-main{position:relative;overflow:hidden;border-radius:8px;aspect-ratio:16/10;background:rgba(124,139,111,.12);touch-action:pan-y}
   .gallery-main-picture{display:block;height:100%}
   .gallery-main-img{width:100%;height:100%;object-fit:cover;display:block}
   .gallery-control{position:absolute;top:50%;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:2.25rem;height:2.25rem;border:0;border-radius:999px;background:rgba(255,255,255,.82);color:var(--color-text);cursor:pointer;transform:translateY(-50%);box-shadow:0 3px 12px rgba(58,54,46,.16)}
@@ -255,6 +255,7 @@
   .gallery-thumb{flex:0 0 76px;height:96px;display:flex;align-items:center;justify-content:center;border:2px solid transparent;border-radius:8px;padding:0;background:rgba(255,255,255,.62);cursor:pointer}
   .gallery-thumb[aria-current="true"]{border-color:var(--color-secondary)}
   .gallery-thumb img{width:100%;height:100%;object-fit:contain;border-radius:6px;display:block}
+  .gallery-hint{display:none}
   .stay-gallery{display:grid;grid-template-columns:minmax(0,2fr) minmax(220px,1fr);gap:.55rem;padding:.5rem;background:rgba(255,255,255,.72)}
   .stay-gallery .gallery-main{aspect-ratio:1.42}
   .stay-gallery .gallery-control{display:none}
@@ -313,7 +314,8 @@
   @media(max-width:860px){
     .stay-gallery{display:block;overflow:visible}
     .stay-gallery .gallery-main-img{min-height:0}
-    .gallery-thumbs{display:none}
+    .stay-gallery .gallery-thumbs{display:none}
+    .stay-gallery .gallery-hint{display:block;text-align:center;font-size:.78rem;color:var(--color-secondary);margin-top:.45rem}
     .stay-option{grid-template-columns:1fr;gap:.5rem}
     .stay-option>div:nth-child(2){text-align:left}
     .stay-option>div:nth-child(2) strong{white-space:normal}
@@ -322,6 +324,57 @@
   .policy-list{list-style:none;margin:0;padding:0}
   .policy-list li{display:flex;gap:.75rem;padding:.5rem 0;border-bottom:1px solid var(--color-border)}
   .policy-list li:last-child{border-bottom:none}
+
+  .room-selector{max-width:var(--w-content);background:var(--color-card);border:1px solid var(--color-border);border-radius:12px;padding:1.5rem 1.75rem;margin-bottom:1.75rem;box-shadow:0 2px 10px rgba(58,54,46,.05)}
+  .room-selector-title{margin:0 0 .4rem;font-family:var(--font-headline)!important;font-size:1.15rem!important;font-weight:700!important;color:var(--color-text)}
+  .room-selector-intro{margin:0 0 1.1rem;color:var(--color-secondary);font-size:.9rem}
+  .room-choices{display:grid;grid-template-columns:1fr;gap:.75rem}
+  @media(min-width:640px){.room-choices{grid-template-columns:repeat(2,1fr)}}
+  @media(min-width:980px){.room-choices{grid-template-columns:repeat(3,1fr)}}
+  .room-choice{display:block;width:100%;text-align:left;padding:1rem 1.1rem;border:1px solid var(--color-border);border-radius:10px;background:var(--color-bg);cursor:pointer;transition:border-color var(--transition),background var(--transition),transform var(--transition)}
+  .room-choice:hover{border-color:var(--color-secondary);transform:translateY(-1px)}
+  .room-choice:focus-visible{outline:3px solid var(--color-secondary);outline-offset:2px}
+  .room-choice[aria-pressed="true"]{border-color:var(--color-cta);background:rgba(217,164,65,.14)}
+  .room-choice-title{display:block;font-weight:700;font-size:.96rem;color:var(--color-text)}
+  .room-choice-copy{display:block;font-size:.82rem;color:var(--color-secondary);line-height:1.65}
+  .room-choice-topline{display:flex;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:.4rem}
+  .room-choice-badge{display:inline-flex;align-items:center;gap:.3rem;padding:.2rem .58rem;border-radius:999px;background:var(--color-cta);color:var(--color-on-cta);font-size:.72rem;font-weight:900;white-space:nowrap}
+  .room-choice-reason{display:block;margin-top:.65rem;padding-top:.6rem;border-top:1px solid rgba(217,164,65,.45);font-size:.8rem;font-weight:700;color:#6B4E19;line-height:1.6}
+  .room-choice--recommended{border:2px solid var(--color-cta);background:rgba(217,164,65,.12);box-shadow:0 7px 20px rgba(58,54,46,.09)}
+  .room-choice--recommended:hover{border-color:var(--color-cta);background:rgba(217,164,65,.17)}
+  .room-choice--recommended[aria-pressed="true"]{border-color:var(--color-cta);background:rgba(217,164,65,.2);box-shadow:0 8px 22px rgba(58,54,46,.12)}
+  @media(min-width:640px){.room-choice--recommended{grid-column:1/-1}}
+
+  .room-result{max-width:var(--w-content)}
+  .room-result[hidden]{display:none}
+  .room-result-toolbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:.75rem;margin-bottom:1rem}
+  .room-result-current{margin:0;font-size:.9rem;color:var(--color-secondary)}
+  .room-result-current strong{color:var(--color-text)}
+  .room-result-reset{border:0;border-bottom:1px solid currentColor;background:none;color:var(--color-secondary);padding:2px 0;cursor:pointer;font-size:.86rem;font-weight:700}
+  .room-result-reset:hover{color:var(--color-text)}
+
+  .stay-card[hidden]{display:none}
+
+  .room-block-list{display:grid;gap:1rem;margin-top:1.1rem}
+  .room-block{border-top:1px solid var(--color-border);padding-top:1rem;animation:roomFadeIn .25s ease both}
+  .room-block:first-child{border-top:0;padding-top:0}
+  .room-block[hidden]{display:none}
+  @keyframes roomFadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .room-block-head{display:flex;align-items:center;gap:.6rem;flex-wrap:wrap;margin-bottom:.6rem}
+  .room-block-name{font-size:1rem;font-weight:700;color:var(--color-text)}
+  .room-block-badge{display:inline-flex;padding:.15rem .55rem;border-radius:999px;background:rgba(124,139,111,.18);color:var(--color-secondary);font-size:.72rem;font-weight:700}
+  .room-facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem;margin-bottom:.75rem}
+  .room-fact{padding:.55rem .65rem;border-radius:8px;background:rgba(217,210,192,.28)}
+  .room-fact b{display:block;margin-bottom:.15rem;font-size:.7rem;color:var(--color-secondary);font-weight:700;letter-spacing:.03em}
+  .room-fact span{font-size:.85rem;color:var(--color-text);font-weight:600}
+  .room-spa{margin-bottom:.85rem;padding:.75rem .85rem;border:1px solid var(--color-border);border-radius:8px;background:rgba(255,255,255,.6)}
+  .room-spa-title{margin:0 0 .3rem;font-size:.7rem;font-weight:700;letter-spacing:.05em;color:var(--color-secondary)}
+  .room-spa-main{margin:0;font-size:.85rem;font-weight:700;color:var(--color-text)}
+  .room-spa-copy{margin:.25rem 0 0;font-size:.8rem;color:var(--color-secondary)}
+  .room-price-row{display:flex;align-items:baseline;justify-content:space-between;gap:.75rem}
+  .room-price-kicker{font-size:.78rem;color:var(--color-secondary)}
+  .room-price{font-family:var(--font-headline)!important;font-size:1.25rem;font-weight:900;color:var(--color-text)}
+  .room-note{margin-top:.7rem;padding:.6rem .75rem;border-left:3px solid var(--color-cta);border-radius:0 8px 8px 0;background:rgba(217,164,65,.1);font-size:.8rem;color:var(--color-text)}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
@@ -690,63 +743,189 @@
 <section id="pricing" style="background:rgba(124,139,111,.14)">
   <div class="container-wide">
     <h2>Rooms & Fees</h2>
-    <p style="opacity:.8;margin-bottom:1.5rem;max-width:var(--w-read)">Choose the accommodation style that fits your stay, then review the fee. All fees are listed in New Taiwan Dollars. The main retreat is 7 days and 6 nights, excluding international airfare.</p>
+    <p style="opacity:.8;margin-bottom:1.5rem;max-width:var(--w-read)">Start by choosing how many guests are staying together, and you'll see the room options and fees that fit. All fees are listed in New Taiwan Dollars. The main retreat is 7 days and 6 nights, excluding international airfare.</p>
 
-    <div class="fee-summary">
-      <p><strong>Included:</strong> 6 nights accommodation, brunch, dinner, classes guided by Nandaji, group airport transfers, cultural tour in Hue, one 50-minute Spa treatment, and hot spring access during the stay.</p>
-      <p><strong>Not included:</strong> International airfare, private transfers, Hoi An extension, travel insurance, visa fees, optional activities, and personal expenses.</p>
+    <div aria-labelledby="roomSelectorTitle" class="room-selector">
+      <div aria-label="Group size" class="room-choices" role="group">
+        <button aria-pressed="false" class="room-choice room-choice--recommended" data-choice="four" type="button">
+          <span class="room-choice-topline">
+            <span class="room-choice-title">Four guests | Garden Bungalow</span>
+            <span class="room-choice-badge"><i class="ti ti-star-filled"></i>Recommended</span>
+          </span>
+          <span class="room-choice-copy">110 sqm, two bedrooms + a separate living room — ideal for four guests together.</span>
+        </button>
+        <button aria-pressed="false" class="room-choice" data-choice="three" type="button">
+          <span class="room-choice-topline"><span class="room-choice-title">Three guests | Garden Bungalow</span></span>
+          <span class="room-choice-copy">Three guests share the 110 sqm bungalow, with two bedrooms and a living room.</span>
+        </button>
+        <button aria-pressed="false" class="room-choice" data-choice="two" type="button">
+          <span class="room-choice-topline"><span class="room-choice-title">Two guests | Two room options</span></span>
+          <span class="room-choice-copy">Garden Twin Room | budget-friendly<br>Private Bungalow | more space</span>
+        </button>
+        <button aria-pressed="false" class="room-choice" data-choice="solo" type="button">
+          <span class="room-choice-topline"><span class="room-choice-title">Solo stay | Single Rooms</span></span>
+          <span class="room-choice-copy">Keep a room to yourself — choose between 25 sqm or 35 sqm.</span>
+        </button>
+      </div>
     </div>
 
-    <div class="stay-grid">
-      <article class="stay-card">
-        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Rooms photos">
+    <div class="fee-summary">
+      <p><strong>Included:</strong> 6 nights accommodation, brunch, dinner, classes guided by Nandaji, group airport transfers, cultural tour in Hue, one 50-minute Spa treatment matched to your room, and hot spring access during the stay.</p>
+      <p><strong>Not included:</strong> International airfare, travel insurance and visa fees; private transfers, the Hoi An extension, and optional activities or personal expenses within the retreat center are priced separately.</p>
+    </div>
+
+    <div class="room-result" hidden id="roomResult">
+      <div class="room-result-toolbar">
+        <p class="room-result-current">Your selection: <strong id="roomResultLabel"></strong></p>
+        <button class="room-result-reset" id="roomResultReset" type="button">Choose again</button>
+      </div>
+    </div>
+
+    <div class="stay-grid" id="stayGrid">
+      <article class="stay-card" hidden>
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Single Room 25 sqm photos">
           <div class="gallery-main">
             <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
-            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-01-900.webp" alt="Garden Room interior" width="1400" height="993" loading="lazy" decoding="async"></picture>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-single25-01-900.webp 900w, images/gallery/room-single25-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-single25-01-900.webp" alt="Garden Single Room 25 sqm interior with one large bed" width="1280" height="853" loading="lazy" decoding="async"></picture>
             <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
             <div class="gallery-count" aria-live="polite">1 / 3</div>
           </div>
-          <div class="gallery-thumbs" aria-label="Choose Garden Rooms photo"></div>
-          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-01-900.webp","srcset":"images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w","thumb":"images/gallery/room-garden-01-320.webp","alt":"Garden Room interior","width":"1400","height":"993"},{"src":"images/gallery/room-garden-02-900.webp","srcset":"images/gallery/room-garden-02-900.webp 900w, images/gallery/room-garden-02-1400.webp 1400w","thumb":"images/gallery/room-garden-02-320.webp","alt":"Garden Room window and bed area","width":"1400","height":"934"},{"src":"images/gallery/room-garden-03-900.webp","srcset":"images/gallery/room-garden-03-900.webp 900w, images/gallery/room-garden-03-1400.webp 1400w","thumb":"images/gallery/room-garden-03-320.webp","alt":"Garden Room details","width":"1400","height":"936"}]</script>
+          <div class="gallery-thumbs" aria-label="Choose Garden Single Room 25 sqm photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-single25-01-900.webp","srcset":"images/gallery/room-single25-01-900.webp 900w, images/gallery/room-single25-01-1400.webp 1400w","thumb":"images/gallery/room-single25-01-320.webp","alt":"Garden Single Room 25 sqm interior with one large bed","width":"1280","height":"853"},{"src":"images/gallery/room-single25-02-900.webp","srcset":"images/gallery/room-single25-02-900.webp 900w, images/gallery/room-single25-02-1400.webp 1400w","thumb":"images/gallery/room-single25-02-320.webp","alt":"Garden Single Room 25 sqm exterior","width":"1280","height":"853"},{"src":"images/gallery/room-single25-03-900.webp","srcset":"images/gallery/room-single25-03-900.webp 900w, images/gallery/room-single25-03-1400.webp 1400w","thumb":"images/gallery/room-single25-03-320.webp","alt":"Garden Single Room 25 sqm bathroom","width":"1200","height":"929"}]</script>
         </div>
         <div class="stay-body">
           <div class="stay-heading">
-            <p class="stay-kicker">Garden Rooms</p>
-            <h3>Garden Rooms</h3>
-            <p>Located in the main building, Garden Rooms offer a quiet and comfortable space for seven days of practice and rest.</p>
+            <h3>Garden Single Room</h3>
+            <p>Garden Single Room is located in the main building — quiet and comfortable, ideal for solo travelers.</p>
           </div>
           <div class="stay-fit">
             <h4>Room Features</h4>
             <div class="stay-features">
-              <span class="stay-feature"><i class="ti ti-building"></i>Main building</span>
-              <span class="stay-feature"><i class="ti ti-ruler-2"></i>25-35 sqm</span>
-              <span class="stay-feature"><i class="ti ti-users"></i>Single or twin stay</span>
+              <span class="stay-feature"><i class="ti ti-building"></i>In the main building</span>
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>25 sqm</span>
+              <span class="stay-feature"><i class="ti ti-user"></i>Solo stay</span>
             </div>
           </div>
-          <div class="stay-options" aria-label="Garden Rooms fees">
-            <div class="stay-option"><div><strong>Garden Twin Room</strong><span>2 guests · 2 single beds</span></div><div><strong>NT$32,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E9%9B%99%E5%BA%8A%E5%AE%A2%E6%88%BF%20%2F%20Garden%20Twin%20Room" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
-            <div class="stay-option"><div><strong>Garden Single Room</strong><span>1 guest · 25 sqm</span></div><div><strong>NT$39,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E5%96%AE%E4%BA%BA%E5%AE%A2%E6%88%BF%2025%E3%8E%A1%20%2F%20Garden%20Single%20Room%2025%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
-            <div class="stay-option"><div><strong>Garden View Single Room</strong><span>1 guest · 35 sqm</span></div><div><strong>NT$42,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E6%99%AF%E8%A7%80%E5%96%AE%E4%BA%BA%E6%88%BF%2035%E3%8E%A1%20%2F%20Garden%20View%20Single%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+          <div class="room-block-list" aria-label="Garden Single Room 25 sqm fees">
+            <div class="room-block" data-room="single-25" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Single Room 25 sqm</strong></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>1</span></div>
+                <div class="room-fact"><b>Bed</b><span>1 large bed</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute full-body Spa treatment.</p>
+                <p class="room-spa-copy">A deeper way to rest and recover after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$39,800</strong></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E5%96%AE%E4%BA%BA%E6%88%BF%2025%E3%8E%A1%20%2F%20Garden%20Single%20Room%2025%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="stay-card">
+      <article class="stay-card" hidden>
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Single Room 35 sqm photos">
+          <div class="gallery-main">
+            <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-single35-01-900.webp 900w, images/gallery/room-single35-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-single35-01-900.webp" alt="Garden Single Room 35 sqm interior with one extra-large bed" width="1280" height="853" loading="lazy" decoding="async"></picture>
+            <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+            <div class="gallery-count" aria-live="polite">1 / 3</div>
+          </div>
+          <div class="gallery-thumbs" aria-label="Choose Garden Single Room 35 sqm photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-single35-01-900.webp","srcset":"images/gallery/room-single35-01-900.webp 900w, images/gallery/room-single35-01-1400.webp 1400w","thumb":"images/gallery/room-single35-01-320.webp","alt":"Garden Single Room 35 sqm interior with one extra-large bed","width":"1280","height":"853"},{"src":"images/gallery/room-single35-02-900.webp","srcset":"images/gallery/room-single35-02-900.webp 900w, images/gallery/room-single35-02-1400.webp 1400w","thumb":"images/gallery/room-single35-02-320.webp","alt":"Garden Single Room 35 sqm balcony","width":"1280","height":"853"},{"src":"images/gallery/room-single35-03-900.webp","srcset":"images/gallery/room-single35-03-900.webp 900w, images/gallery/room-single35-03-1400.webp 1400w","thumb":"images/gallery/room-single35-03-320.webp","alt":"Garden Single Room 35 sqm bathroom","width":"1280","height":"853"}]</script>
+        </div>
+        <div class="stay-body">
+          <div class="stay-heading">
+            <h3>Garden Single Room 35 sqm</h3>
+            <p>Garden Single Room 35 sqm offers more space and a larger bed, for guests who value extra room.</p>
+          </div>
+          <div class="stay-fit">
+            <h4>Room Features</h4>
+            <div class="stay-features">
+              <span class="stay-feature"><i class="ti ti-building"></i>In the main building</span>
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>35 sqm</span>
+              <span class="stay-feature"><i class="ti ti-user"></i>Solo stay</span>
+            </div>
+          </div>
+          <div class="room-block-list" aria-label="Garden Single Room 35 sqm fees">
+            <div class="room-block" data-room="single-35" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Single Room 35 sqm</strong></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>1</span></div>
+                <div class="room-fact"><b>Bed</b><span>1 large bed</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute full-body Spa treatment.</p>
+                <p class="room-spa-copy">A deeper way to rest and recover after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$42,800</strong></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E5%96%AE%E4%BA%BA%E6%88%BF%2035%E3%8E%A1%20%2F%20Garden%20Single%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay-card" hidden>
+        <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Twin Room photos">
+          <div class="gallery-main">
+            <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-01-900.webp" alt="Garden Twin Room interior" width="1400" height="993" loading="lazy" decoding="async"></picture>
+            <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
+            <div class="gallery-count" aria-live="polite">1 / 3</div>
+          </div>
+          <div class="gallery-thumbs" aria-label="Choose Garden Twin Room photo"></div>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-01-900.webp","srcset":"images/gallery/room-garden-01-900.webp 900w, images/gallery/room-garden-01-1400.webp 1400w","thumb":"images/gallery/room-garden-01-320.webp","alt":"Garden Twin Room interior","width":"1400","height":"993"},{"src":"images/gallery/room-garden-02-900.webp","srcset":"images/gallery/room-garden-02-900.webp 900w, images/gallery/room-garden-02-1400.webp 1400w","thumb":"images/gallery/room-garden-02-320.webp","alt":"Garden Twin Room window and bed area","width":"1400","height":"934"},{"src":"images/gallery/room-garden-03-900.webp","srcset":"images/gallery/room-garden-03-900.webp 900w, images/gallery/room-garden-03-1400.webp 1400w","thumb":"images/gallery/room-garden-03-320.webp","alt":"Garden Twin Room outdoor balcony","width":"1280","height":"853"}]</script>
+        </div>
+        <div class="stay-body">
+          <div class="stay-heading">
+            <h3>Garden Twin Room</h3>
+            <p>Garden Twin Room is located in the main building — quiet and comfortable, ideal for two companions sharing a room.</p>
+          </div>
+          <div class="stay-fit">
+            <h4>Room Features</h4>
+            <div class="stay-features">
+              <span class="stay-feature"><i class="ti ti-building"></i>In the main building</span>
+              <span class="stay-feature"><i class="ti ti-ruler-2"></i>35 sqm</span>
+              <span class="stay-feature"><i class="ti ti-users"></i>Twin stay</span>
+            </div>
+          </div>
+          <div class="room-block-list" aria-label="Garden Twin Room fees">
+            <div class="room-block" data-room="twin-35" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Garden Twin Room 35 sqm</strong></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>2</span></div>
+                <div class="room-fact"><b>Bed</b><span>2 single beds</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute Spa treatment.</p>
+                <p class="room-spa-copy">Focused on foot and facial relief, easing the body after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$32,800</strong></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E8%8A%B1%E5%9C%92%E9%9B%99%E5%BA%8A%E5%AE%A2%E6%88%BF%2035%E3%8E%A1%20%2F%20Garden%20Twin%20Room%2035%20sqm" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="stay-card" hidden>
         <div class="stay-gallery media-gallery" data-gallery aria-label="Garden Bungalow photos">
           <div class="gallery-main">
             <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
-            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-bungalow-01-900.webp" alt="Garden Bungalow bedroom" width="1400" height="934" loading="lazy" decoding="async"></picture>
+            <picture class="gallery-main-picture"><source class="gallery-source" type="image/webp" srcset="images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w" sizes="(max-width: 860px) 100vw, 1040px"><img class="gallery-main-img" src="images/gallery/room-garden-bungalow-01-900.webp" alt="Garden Bungalow outdoor courtyard and seating" width="1024" height="683" loading="lazy" decoding="async"></picture>
             <button class="gallery-control gallery-next" type="button" aria-label="Next photo"><i class="ti ti-chevron-right"></i></button>
             <div class="gallery-count" aria-live="polite">1 / 3</div>
           </div>
           <div class="gallery-thumbs" aria-label="Choose Garden Bungalow photo"></div>
-          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-bungalow-01-900.webp","srcset":"images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-01-320.webp","alt":"Garden Bungalow bedroom","width":"1400","height":"934"},{"src":"images/gallery/room-garden-bungalow-02-900.webp","srcset":"images/gallery/room-garden-bungalow-02-900.webp 900w, images/gallery/room-garden-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-02-320.webp","alt":"Garden Bungalow living area","width":"1400","height":"935"},{"src":"images/gallery/room-garden-bungalow-03-900.webp","srcset":"images/gallery/room-garden-bungalow-03-900.webp 900w, images/gallery/room-garden-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-03-320.webp","alt":"Garden Bungalow details","width":"1400","height":"935"}]</script>
+          <script type="application/json" class="gallery-data">[{"src":"images/gallery/room-garden-bungalow-01-900.webp","srcset":"images/gallery/room-garden-bungalow-01-900.webp 900w, images/gallery/room-garden-bungalow-01-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-01-320.webp","alt":"Garden Bungalow outdoor courtyard and seating","width":"1024","height":"683"},{"src":"images/gallery/room-garden-bungalow-02-900.webp","srcset":"images/gallery/room-garden-bungalow-02-900.webp 900w, images/gallery/room-garden-bungalow-02-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-02-320.webp","alt":"Garden Bungalow living area","width":"1400","height":"935"},{"src":"images/gallery/room-garden-bungalow-03-900.webp","srcset":"images/gallery/room-garden-bungalow-03-900.webp 900w, images/gallery/room-garden-bungalow-03-1400.webp 1400w","thumb":"images/gallery/room-garden-bungalow-03-320.webp","alt":"Garden Bungalow details","width":"1400","height":"935"}]</script>
         </div>
         <div class="stay-body">
           <div class="stay-heading">
-            <p class="stay-kicker">Garden Bungalow</p>
             <h3>Garden Bungalow</h3>
-            <p>This 110 sqm two-bedroom bungalow includes two bedrooms and a separate living room, suitable for three to four companions booking the whole bungalow together.</p>
+            <p>Booked as a whole 110 sqm unit with two bedrooms and a separate living room. Recommended for four guests; three guests may also book the whole bungalow.</p>
           </div>
           <div class="stay-fit">
             <h4>Room Features</h4>
@@ -757,18 +936,41 @@
               <span class="stay-feature"><i class="ti ti-users-group"></i>Three to four guests</span>
             </div>
           </div>
-          <div class="stay-plan" aria-label="Garden Bungalow fees">
-            <div class="stay-plan-main">
-              <p class="stay-plan-kicker">Recommended | four guests</p>
-              <div class="stay-plan-title"><strong>Full bungalow booking</strong><span class="stay-plan-price">NT$34,800/person</span></div>
-              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%EF%BD%9C%E5%9B%9B%E4%BD%8D%E5%90%8C%E8%A1%8C%20%2F%20Garden%20Bungalow%20for%20Four" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+          <div class="room-block-list" aria-label="Garden Bungalow fees">
+            <div class="room-block" data-room="villa-110-four" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Garden Bungalow for Four</strong><span class="room-block-badge">Recommended for four</span></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>4</span></div>
+                <div class="room-fact"><b>Bed</b><span>1 large bed + 2 single beds</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute full-body Spa treatment.</p>
+                <p class="room-spa-copy">A deeper way to rest and recover after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$36,800</strong></div>
+              <div class="room-note">Bed note: two guests share one large bed, and the other two each have a single bed — please arrange sleeping spots among yourselves.</div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%9B%9B%E4%BA%BA%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%20%2F%20Garden%20Bungalow%20for%20Four" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
             </div>
-            <div class="stay-plan-sub"><strong>Also available for three guests</strong><span>NT$40,800/person</span><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%EF%BD%9C%E4%B8%89%E4%BD%8D%E5%90%8C%E8%A1%8C%20%2F%20Garden%20Bungalow%20for%20Three" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+            <div class="room-block" data-room="villa-110-three" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Garden Bungalow for Three</strong></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>3</span></div>
+                <div class="room-fact"><b>Bed</b><span>1 large bed + 2 single beds</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute full-body Spa treatment.</p>
+                <p class="room-spa-copy">A deeper way to rest and recover after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$40,800</strong></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E4%B8%89%E4%BA%BA%E5%BA%AD%E5%9C%92%E9%9B%99%E8%87%A5%E6%9C%A8%E5%B1%8B%20%2F%20Garden%20Bungalow%20for%20Three" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+            </div>
           </div>
         </div>
       </article>
 
-      <article class="stay-card">
+      <article class="stay-card" hidden>
         <div class="stay-gallery media-gallery" data-gallery aria-label="Private Bungalow photos">
           <div class="gallery-main">
             <button class="gallery-control gallery-prev" type="button" aria-label="Previous photo"><i class="ti ti-chevron-left"></i></button>
@@ -781,9 +983,8 @@
         </div>
         <div class="stay-body">
           <div class="stay-heading">
-            <p class="stay-kicker">Private Bungalow</p>
             <h3>Private Bungalow</h3>
-            <p>This 70 sqm standalone bungalow offers a more independent space for participants who want privacy and a quieter rest rhythm.</p>
+            <p>This 70 sqm standalone bungalow offers a more independent space for two companions who prefer privacy and a quieter rest rhythm.</p>
           </div>
           <div class="stay-fit">
             <h4>Room Features</h4>
@@ -791,12 +992,24 @@
               <span class="stay-feature"><i class="ti ti-ruler-2"></i>70 sqm</span>
               <span class="stay-feature"><i class="ti ti-home"></i>Standalone stay</span>
               <span class="stay-feature"><i class="ti ti-leaf"></i>Quiet private space</span>
-              <span class="stay-feature"><i class="ti ti-users"></i>One or two guests</span>
+              <span class="stay-feature"><i class="ti ti-users"></i>Two guests</span>
             </div>
           </div>
-          <div class="stay-options" aria-label="Private Bungalow fees">
-            <div class="stay-option"><div><strong>Two guests</strong><span>2 guests · 70 sqm bungalow</span></div><div><strong>NT$44,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E7%8D%A8%E6%A3%9F%E5%BA%AD%E5%9C%92%E6%9C%A8%E5%B1%8B%EF%BD%9C%E5%85%A9%E4%BA%BA%E5%85%A5%E4%BD%8F%20%2F%20Private%20Bungalow%20for%20Two" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
-            <div class="stay-option"><div><strong>Private single stay</strong><span>1 guest · 70 sqm bungalow</span></div><div><strong>NT$53,800</strong><span>per person</span></div><a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E7%8D%A8%E6%A3%9F%E5%BA%AD%E5%9C%92%E6%9C%A8%E5%B1%8B%EF%BD%9C%E4%B8%80%E4%BA%BA%E7%8D%A8%E4%BA%AB%20%2F%20Private%20Bungalow%20Single%20Stay" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a></div>
+          <div class="room-block-list" aria-label="Private Bungalow fees">
+            <div class="room-block" data-room="villa-70-double" hidden>
+              <div class="room-block-head"><strong class="room-block-name">Private Bungalow for Two</strong><span class="room-block-badge">Upgraded space</span></div>
+              <div class="room-facts">
+                <div class="room-fact"><b>Guests</b><span>2</span></div>
+                <div class="room-fact"><b>Bed</b><span>2 single beds or 1 large bed</span></div>
+              </div>
+              <div class="room-spa">
+                <p class="room-spa-title">SPA Treatment</p>
+                <p class="room-spa-main">Includes one 50-minute full-body Spa treatment.</p>
+                <p class="room-spa-copy">A deeper way to rest and recover after practice.</p>
+              </div>
+              <div class="room-price-row"><span class="room-price-kicker">Per person</span><strong class="room-price">NT$45,800</strong></div>
+              <a class="room-select" href="https://docs.google.com/forms/d/e/1FAIpQLSf5VbOO6mggGx9d_XAPTNYZEvlbgUyHfyV90-GJol_8H9vVLg/viewform?usp=pp_url&entry.1862495116=%E7%8D%A8%E6%A3%9F%E5%BA%AD%E5%9C%92%E6%9C%A8%E5%B1%8B%E9%9B%99%E4%BA%BA%20%2F%20Private%20Bungalow%20for%20Two" target="_blank" rel="noopener"><i class="ti ti-bed"></i>Register Now</a>
+            </div>
           </div>
         </div>
       </article>
@@ -960,6 +1173,9 @@
     const thumbs = gallery.querySelector('.gallery-thumbs');
     const main = gallery.querySelector('.gallery-main');
     const isStayGallery = gallery.classList.contains('stay-gallery');
+    const hint = document.createElement('div');
+    hint.className = 'gallery-hint';
+    hint.textContent = 'Swipe to see more photos';
     let items = [];
     let index = 0;
     let touchStartX = 0;
@@ -971,6 +1187,9 @@
     }
 
     if (!items.length || !img || !source || !count) return;
+    if (items.length > 1 && main && !gallery.querySelector('.gallery-hint')) {
+      main.insertAdjacentElement('afterend', hint);
+    }
 
     const render = (nextIndex) => {
       index = (nextIndex + items.length) % items.length;
@@ -1018,6 +1237,68 @@
       if (Math.abs(deltaX) > 45 && items.length > 1) render(index + (deltaX < 0 ? 1 : -1));
     }, { passive: true });
   });
+
+  const roomChoiceMap = {
+    'four': { label: 'Four guests | Garden Bungalow', rooms: ['villa-110-four'] },
+    'two': { label: 'Two guests | Two room options', rooms: ['twin-35', 'villa-70-double'] },
+    'solo': { label: 'Solo stay | Single Rooms', rooms: ['single-25', 'single-35'] },
+    'three': { label: 'Three guests | Garden Bungalow', rooms: ['villa-110-three'] }
+  };
+
+  const roomChoiceButtons = [...document.querySelectorAll('.room-choice')];
+  const roomResult = document.getElementById('roomResult');
+  const roomResultLabel = document.getElementById('roomResultLabel');
+  const roomResultReset = document.getElementById('roomResultReset');
+  const roomSelector = document.querySelector('.room-selector');
+  const stayGrid = document.getElementById('stayGrid');
+  const stayCards = [...document.querySelectorAll('#stayGrid .stay-card')];
+
+  function showRoomChoice(key) {
+    const data = roomChoiceMap[key];
+    if (!data) return;
+
+    roomChoiceButtons.forEach((button) => {
+      button.setAttribute('aria-pressed', button.dataset.choice === key ? 'true' : 'false');
+    });
+
+    const matchedCards = [];
+    stayCards.forEach((card) => {
+      const blocks = [...card.querySelectorAll('[data-room]')];
+      const matched = blocks.filter((block) => data.rooms.includes(block.dataset.room));
+      card.hidden = matched.length === 0;
+      blocks.forEach((block) => { block.hidden = !data.rooms.includes(block.dataset.room); });
+      if (matched.length) {
+        const firstMatchIndex = Math.min(...matched.map((block) => data.rooms.indexOf(block.dataset.room)).filter((idx) => idx > -1));
+        matchedCards.push({ card, firstMatchIndex });
+      }
+    });
+
+    matchedCards.sort((a, b) => a.firstMatchIndex - b.firstMatchIndex).forEach(({ card }) => {
+      stayGrid?.appendChild(card);
+    });
+
+    if (roomResultLabel) roomResultLabel.textContent = data.label;
+    if (roomResult) roomResult.hidden = false;
+
+    window.setTimeout(() => {
+      roomResult?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 60);
+  }
+
+  function resetRoomChoice() {
+    roomChoiceButtons.forEach((button) => button.setAttribute('aria-pressed', 'false'));
+    if (roomResult) roomResult.hidden = true;
+    stayCards.forEach((card) => {
+      card.hidden = true;
+      card.querySelectorAll('[data-room]').forEach((block) => { block.hidden = true; });
+    });
+    roomSelector?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  roomChoiceButtons.forEach((button) => {
+    button.addEventListener('click', () => showRoomChoice(button.dataset.choice));
+  });
+  roomResultReset?.addEventListener('click', resetRoomChoice);
 </script>
 
 </body>
