@@ -315,6 +315,8 @@
     .stay-gallery{display:block;overflow:visible}
     .stay-gallery .gallery-main-img{min-height:0}
     .stay-gallery .gallery-thumbs{display:none}
+    .stay-gallery .gallery-control{display:inline-flex}
+    .stay-gallery .gallery-count{display:block}
     .stay-gallery .gallery-hint{display:block;text-align:center;font-size:.78rem;color:var(--color-secondary);margin-top:.45rem}
     .stay-option{grid-template-columns:1fr;gap:.5rem}
     .stay-option>div:nth-child(2){text-align:left}
@@ -1224,8 +1226,10 @@
 
     render(0);
     if (isStayGallery) {
-      main?.addEventListener('click', () => openLightbox(items[0]));
-      return;
+      main?.addEventListener('click', (event) => {
+        if (event.target.closest('.gallery-control')) return;
+        openLightbox(items[index]);
+      });
     }
     gallery.querySelector('.gallery-prev')?.addEventListener('click', () => render(index - 1));
     gallery.querySelector('.gallery-next')?.addEventListener('click', () => render(index + 1));
